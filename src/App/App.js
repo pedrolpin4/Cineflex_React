@@ -1,7 +1,7 @@
 import './App.css';
 import NavBar from '../NavBar/NavBar'
 import MoviesList from '../MoviesList/MoviesList'
-import TicketsSession from '../TicketsSession/TicketsSession'
+import TicketsSessions from '../TicketsSessions/TicketsSessions'
 import {
   BrowserRouter as Router,
   Switch,
@@ -17,7 +17,7 @@ function App() {
           <MoviesList />
         </Route>
         <Route path = "/" exact>
-          <TicketsSession />
+          <TicketsSessions />
         </Route>
       </Switch>
     </Router>
