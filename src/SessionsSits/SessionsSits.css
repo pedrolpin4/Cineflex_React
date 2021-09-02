@@ -8,6 +8,10 @@ h1{
     font-size: 24px;
 }
 
+.sits-page-content{
+    margin-bottom: 132px;
+}
+
 .sits-container{
     margin: 0px 16px;
     justify-content: center;
@@ -22,7 +26,109 @@ h1{
     justify-content: center;
     width: 26px;
     height: 26px;
+    border-radius: 12px;
+}
+
+.available{
     background: #C3CFD9;
     border: 1px solid #808F9D;
-    border-radius: 12px;
+}
+
+.unavailable{
+    background: #FBE192;
+    border: 1px solid #F7C52B;
+}
+
+.selected{
+    background: #8DD7CF;
+    border: 1px solid #45BDB0;
+}
+
+.sits-status-container{
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.sits-status-container div{
+    margin: 0px 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sits-status-container p {
+    margin-top: 5px;
+    color: #4E5A65
+}
+
+.sits-status{
+    width: 25px;
+    height: 25px;
+    border-radius: 17px;
+}
+
+.buyers-info{
+    margin: 40px 24px 0px 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+.buyers-info p{
+    margin-bottom: 5px;
+    font-size: 18px;
+    color: #293845;
+}
+
+.buyers-info input{
+    padding-left: 18px;
+    margin-bottom: 10px;
+    width: calc(100vw - 48px);
+    height: 51px;
+    background: #FFFFFF;
+    border: 1px solid #D5D5D5;
+    border-radius: 3px;
+}
+
+footer{
+    display: flex;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    height: 117px;
+    left: 0px;
+    bottom: 0px;
+    background: #DFE6ED;
+    border: 1px solid #9EADBA;
+}
+
+.mini-poster{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 64px;
+    height: 89px;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+    margin-left: 10px;
+}
+
+.mini-poster img{
+    width: 48px;
+    height: 72px;
+}
+
+.sessions-info{
+    display: flex;
+    height: 117px;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 14px;
+    font-size: 26px;
+    color: #293845;
+}
+
+.sessions-info p{
+    margin: 5px 0px;
 }

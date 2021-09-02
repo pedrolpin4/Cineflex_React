@@ -44,3 +44,27 @@ table {
 strong {
 	font-weight: bold;
 }
+
+textarea:focus, input:focus, select:focus {
+    box-shadow: 0 0 0 0;
+    outline: 0;
+}
+
+::placeholder {
+    color: #D1D1D1;
+    font-style: italic;
+    font-size: 19px;
+}
+
+:-ms-input-placeholder{
+    color: #D1D1D1;
+    font-style: italic;
+    font-size: 19px;
+    opacity: 1;
+}
+
+::-ms-input-placeholder{
+    color: #D1D1D1;
+    font-style: italic;
+    font-size: 19px;
+}
