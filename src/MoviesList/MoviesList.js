@@ -3,7 +3,7 @@ import MoviePoster from './MoviePoster/MoviePoster'
 import axios from "axios";
 import { useEffect, useState } from 'react';
 
-const MoviesList = () => {
+const MoviesList = ({tickets, setTickets}) => {
     const [movies, setMovies] = useState([])
     const [movieId, setMovieId] = useState("")
 

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
 import './SessionsSeats.css'
 
 const SessionsSeats = ({ sessionId }) =>{
@@ -19,7 +20,7 @@ const SessionsSeats = ({ sessionId }) =>{
     return(
         <div className = "seats-page-content">
             <h1>Selecione o(s) assento(s)</h1>
-            <div className = "seats-container">
+            <ul className = "seats-container">
                 
                 {seats.map(seat =>{
 
@@ -40,16 +41,16 @@ const SessionsSeats = ({ sessionId }) =>{
                     }
 
                     return(
-                        <div 
+                        <li 
                             className = {`seat ${seatStatus}`} 
                             key = {seat.id}
                             onClick = {reserveSeat}
                         >
                         {seat.name}
-                        </div>
+                        </li>
                     )
                 })}
-            </div>
+            </ul>
             <div className = "seats-status-container">
                 <div>
                     <div className = "seats-status selected"></div>

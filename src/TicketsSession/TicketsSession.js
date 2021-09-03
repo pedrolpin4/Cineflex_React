@@ -1,13 +1,16 @@
-import './TicketsSessions.css'
+import './TicketsSession.css'
 import axios from 'axios'
-import { useState, useEffect } from 'react'
+import { 
+    useState, 
+    useEffect,
+ } from 'react'
 
-const TicketsSessions = ({ movieId }) => {
+const TicketsSession = ({ tickets, setTickets }) => {
 
     const [days, setDays] = useState([])
 
     useEffect(() => {
-        axios(`https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/movies/${movieId}/showtimes`)
+        axios(`https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/movies/:movieId/showtimes`)
             .then((answer) => {
                 setDays([...answer.data.days]);
             })
@@ -39,4 +42,4 @@ const TicketsSessions = ({ movieId }) => {
     )
 }
 
-export default TicketsSessions
+export default TicketsSession

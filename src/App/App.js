@@ -1,20 +1,19 @@
 import './App.css';
 import NavBar from '../NavBar/NavBar'
 import MoviesList from '../MoviesList/MoviesList'
-import TicketsSessions from '../TicketsSessions/TicketsSessions'
+import TicketsSession from '../TicketsSession/TicketsSession'
 import SessionsSeats from '../SessionsSeats/SessionsSeats';
 import ConfirmationScreen from '../ConfirmationScreen/ConfirmationScreen'
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  useParams,
 } from 'react-router-dom'
 import { useState } from 'react';
 
 function App() {
-  
-  const [ticket, setTicket] = useState({
+
+  const [tickets, setTickets] = useState({
       id: "",
       title: "",
       posterURL: "",
@@ -25,21 +24,40 @@ function App() {
       seats: []
   })
 
+  const [buyer, setBuyer] = useState({
+    name: "",
+    cpf: ""
+  })
+
   return (
     <Router>
       <NavBar />
       <Switch>
         <Route path = "/" exact>
-          <MoviesList />
+          <MoviesList 
+          tickets = {tickets}
+          setTickets = {setTickets}
+          />
         </Route>
         <Route path = "/sessions/:movieId" exact>
-          <TicketsSessions />
+          <TicketsSession 
+            tickets = {tickets}
+            setTickets = {setTickets}
+          />
         </Route>
         <Route path = "/seats/:sessionId" exact>
-          <SessionsSeats />
+          <SessionsSeats 
+            tickets = {tickets}
+            setTickets = {setTickets}
+            buyer = {buyer}
+            setBuyer = {setBuyer}
+          />
         </Route>
         <Route path = "/confirmation-screen" exact>
-          <ConfirmationScreen />
+          <ConfirmationScreen 
+            tickets = {tickets}
+            buyer = {buyer}
+          />
         </Route>
       </Switch>
     </Router>
