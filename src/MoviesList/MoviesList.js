@@ -1,9 +1,11 @@
 import './MoviesList.css'
+import MoviePoster from './MoviePoster/MoviePoster'
 import axios from "axios";
 import { useEffect, useState } from 'react';
 
 const MoviesList = () => {
     const [movies, setMovies] = useState([])
+    const [movieId, setMovieId] = useState("")
 
     useEffect(() => {
         axios("https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/movies")
@@ -15,17 +17,25 @@ const MoviesList = () => {
     },[])
     
 
+    const goToMovie = (movie) =>{
+        console.log(movie.id);
+        setMovieId(movie)
+        return movieId
+    }
+
    return(
-        <>
-            <h1>Selecione o horário</h1>
+        <div className = "movies-list-container">
+            <h1>Selecione o filme</h1>
             <div className = "posters-container">
                 {movies.map(movie => (
-                    <div className = 'movie-poster' key = {movie.id}>
-                        <img src = {movie.posterURL} alt = ""/>
-                    </div>
+                    <MoviePoster 
+                        movie = {movie}
+                        movieId = {movieId}
+                        setMovieId = {setMovieId}
+                    />
                 ))}
             </div>
-        </>
+        </div>
     )
 }
 

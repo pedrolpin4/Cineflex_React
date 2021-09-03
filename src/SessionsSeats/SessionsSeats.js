@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react'
 import './SessionsSeats.css'
 
-const SessionsSeats = () =>{
+const SessionsSeats = ({ sessionId }) =>{
     const [cpf, setCpf] = useState("");
     const [buyersName, setBuyersName] = useState("");
     const [seats, setSeats] = useState([]);
@@ -10,7 +10,7 @@ const SessionsSeats = () =>{
 
 
     useEffect(() =>{
-        axios('https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/showtimes/12/seats')
+        axios(`https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/showtimes/${sessionId}/seats`)
             .then((res) => {
                 setSeats(res.data.seats);
             })

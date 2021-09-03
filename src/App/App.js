@@ -8,23 +8,37 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  useParams,
 } from 'react-router-dom'
+import { useState } from 'react';
 
 function App() {
+  
+  const [ticket, setTicket] = useState({
+      id: "",
+      title: "",
+      posterURL: "",
+      session: {
+        weekday: "",
+        hour: ""
+      },
+      seats: []
+  })
+
   return (
     <Router>
       <NavBar />
       <Switch>
-        <Route path = "/a" exact>
+        <Route path = "/" exact>
           <MoviesList />
         </Route>
-        <Route path = "/b" exact>
+        <Route path = "/sessions/:movieId" exact>
           <TicketsSessions />
         </Route>
-        <Route path = "/c" exact>
+        <Route path = "/seats/:sessionId" exact>
           <SessionsSeats />
         </Route>
-        <Route path = "/" exact>
+        <Route path = "/confirmation-screen" exact>
           <ConfirmationScreen />
         </Route>
       </Switch>
