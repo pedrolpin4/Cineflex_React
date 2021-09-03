@@ -21,7 +21,7 @@ const MoviesList = () => {
             <div className = "posters-container">
                 {movies.map(movie => (
                     <div className = 'movie-poster' key = {movie.id}>
-                        <img src = {movie.posterURL} />
+                        <img src = {movie.posterURL} alt = ""/>
                     </div>
                 ))}
             </div>
