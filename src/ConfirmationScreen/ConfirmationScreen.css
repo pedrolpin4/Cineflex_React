@@ -1,0 +1,41 @@
+h1{
+    display: flex;
+    margin-top: 67px;
+    width: 100%;
+    height: 90px;
+    justify-content: center;
+    text-align: center;
+    font-size: 24px;
+    line-height: 28px;
+    font-weight: bold;
+    color: #247A6B
+}
+
+.confirmation-container{
+    margin-top: 67px 
+}
+
+h2{
+    font-size: 22px;
+    font-weight: bold;
+    margin: 20px 0px 10px 30px;
+}
+
+.confirmation-container p{
+    margin: 5px 0px 0px 30px;
+    font-size: 20px;
+    color: #293845;
+}
+
+.return-home{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    font-size: 18px;
+    margin: 80px calc((100vw - 225px)/2);                          
+    width: 225px;
+    height: 42px;
+    background: #E8833A;
+    border-radius: 3px;                                                 
+}
