@@ -1,65 +1,18 @@
+import axios from 'axios';
+import { useEffect, useState } from 'react'
 import './SessionsSits.css'
 
 const SessionsSits = () =>{
+    const [cpf, setCpf] = useState("");
+    const [buyersName, setBuyersName] = useState("");
+    useEffect(() =>{
+        axios('https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/showtimes/1/seats')
+    }, []) 
+
     return(
         <div className = "sits-page-content">
             <h1>Selecione o(s) assento(s)</h1>
-            <div className = "sits-container">
-                <div className = "sit selected">1</div>
-                <div className = "sit available">1</div>
-                <div className = "sit available">1</div>
-                <div className = "sit available">1</div>
-                <div className = "sit unavailable">1</div>
-                <div className = "sit unavailable">1</div>
-                <div className = "sit unavailable">1</div>
-                <div className = "sit unavailable">1</div>
-                <div className = "sit selected">1</div>
-                <div className = "sit selected">1</div>
-                <div className = "sit selected">1</div>
-                <div className = "sit selected">1</div>
-                <div className = "sit available">1</div>
-                <div className = "sit available">1</div>
-                <div className = "sit available">1</div>
-                <div className = "sit unavailable">1</div>
-                <div className = "sit unavailable">1</div>
-                <div className = "sit unavailable">1</div>
-                <div className = "sit unavailable">1</div>
-                <div className = "sit selected">1</div>
-                <div className = "sit selected">1</div>
-                <div className = "sit selected">1</div>
-                <div className = "sit selected">1</div>
-                <div className = "sit available">1</div>
-                <div className = "sit available">1</div>
-                <div className = "sit available">1</div>
-                <div className = "sit unavailable">1</div>
-                <div className = "sit unavailable">1</div>
-                <div className = "sit unavailable">1</div>
-                <div className = "sit unavailable">1</div>
-                <div className = "sit selected">1</div>
-                <div className = "sit selected">1</div>
-                <div className = "sit selected">1</div>
-                <div className = "sit selected">1</div>
-                <div className = "sit available">1</div>
-                <div className = "sit available">1</div>
-                <div className = "sit available">1</div>
-                <div className = "sit unavailable">1</div>
-                <div className = "sit unavailable">1</div>
-                <div className = "sit unavailable">1</div>
-                <div className = "sit unavailable">1</div>
-                <div className = "sit selected">1</div>
-                <div className = "sit selected">1</div>
-                <div className = "sit selected">1</div>
-                <div className = "sit selected">1</div>
-                <div className = "sit available">1</div>
-                <div className = "sit available">1</div>
-                <div className = "sit available">1</div>
-                <div className = "sit unavailable">1</div>
-                <div className = "sit unavailable">1</div>
-                <div className = "sit unavailable">1</div>
-                <div className = "sit unavailable">1</div>
-                <div className = "sit selected">1</div>
-                <div className = "sit selected">1</div>
-            </div>
+            <div className = "sits-container"></div>
             <div className = "sits-status-container">
                 <div>
                     <div className = "sits-status selected"></div>
@@ -76,9 +29,19 @@ const SessionsSits = () =>{
             </div>
             <div className ="buyers-info">
                 <p>Nome do comprador:</p>
-                <input placeholder = "Digite seu nome..."></input>
+                <input placeholder = "Digite seu nome..." 
+                    onChange = {e => {
+                        setBuyersName(e.target.value)
+                    }}
+                    value = {buyersName}
+                    />
                 <p>CPF do comprador:</p>
-                <input placeholder = "Digite seu CPF..."></input>
+                <input placeholder = "Digite seu CPF..."
+                    onChange = {e => {
+                        setCpf(e.target.value)
+                    }} 
+                    value = {cpf}
+                />
             </div>
             <footer>
                 <div className = "mini-poster">
