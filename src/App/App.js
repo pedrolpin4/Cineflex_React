@@ -13,7 +13,9 @@ import { useState } from 'react';
 
 function App() {
 
-  const [tickets, setTickets] = useState({
+  const [tickets, setTickets] = useState({})
+ 
+ /* {
       id: "",
       title: "",
       posterURL: "",
@@ -22,8 +24,8 @@ function App() {
         hour: ""
       },
       seats: []
-  })
-
+  }
+*/
   const [buyer, setBuyer] = useState({
     name: "",
     cpf: ""

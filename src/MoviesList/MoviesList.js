@@ -8,11 +8,9 @@ const MoviesList = ({tickets, setTickets}) => {
     const [movieId, setMovieId] = useState("")
 
     useEffect(() => {
-        axios("https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/movies")
+        axios("https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/movies")
             .then((answer) => {
                 setMovies([...answer.data]);
-                console.log(answer.data);
-                console.log(movies);
             })
     },[])
     
@@ -27,13 +25,16 @@ const MoviesList = ({tickets, setTickets}) => {
         <div className = "movies-list-container">
             <h1>Selecione o filme</h1>
             <div className = "posters-container">
-                {movies.map(movie => (
-                    <MoviePoster 
+                {movies.map(movie => {
+                    return(
+                        <MoviePoster 
                         movie = {movie}
+                        tickets = {tickets}
+                        setTickets = {setTickets}
                         movieId = {movieId}
                         setMovieId = {setMovieId}
-                    />
-                ))}
+                    />)
+                })}
             </div>
         </div>
     )

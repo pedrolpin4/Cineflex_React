@@ -3,48 +3,37 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import './SessionsSeats.css'
 
-const SessionsSeats = ({ sessionId }) =>{
+const SessionsSeats = ({ tickets, setTickets, buyer, setBuyer }) =>{
     const [cpf, setCpf] = useState("");
     const [buyersName, setBuyersName] = useState("");
     const [seats, setSeats] = useState([]);
-    const[seatStatus, setSeatStatus] = useState("available")
 
+    const verifyStatus = (seat) => {
+        tickets.seats.seat.class =(seat.isAvailable ? "available" : "unavailable")
+        setSeats([...seats])
+    } 
 
     useEffect(() =>{
-        axios(`https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/showtimes/${sessionId}/seats`)
+        axios(`https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/showtimes/${tickets.session.id}/seats`)
             .then((res) => {
-                setSeats(res.data.seats);
+                setSeats([...res.data.seats]);
             })
+            
+        seats.forEach(seat => verifyStatus(seat));
+
+        console.log(tickets);
     }, []) 
 
     return(
         <div className = "seats-page-content">
             <h1>Selecione o(s) assento(s)</h1>
             <ul className = "seats-container">
-                
-                {seats.map(seat =>{
-
-                    const verifyStatus = (seat) => {
-                        if(!seat.isAvailable){
-                            setSeatStatus("unavailable") 
-                        } return setSeatStatus("available")
-                    }
-                
-                    // verifyStatus(seat)
-                    
-                    const reserveSeat = () => {
-                        if (seatStatus === "selected"){
-                            setSeatStatus("available")
-                        } else if(seatStatus === "available"){
-                            setSeatStatus("selected")
-                        } else setSeatStatus("unavailable")
-                    }
+               {seats.map(seat =>{
 
                     return(
                         <li 
-                            className = {`seat ${seatStatus}`} 
+                            className = {`seat ${seat.class}`} 
                             key = {seat.id}
-                            onClick = {reserveSeat}
                         >
                         {seat.name}
                         </li>
@@ -80,14 +69,15 @@ const SessionsSeats = ({ sessionId }) =>{
                     }} 
                     value = {cpf}
                 />
+                <div className = "reserve-seats">Reservar assento(s)</div>
             </div>
             <footer>
                 <div className = "mini-poster">
-                    <img src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2kekV1GGgplhQY1_KvaLVDa6ZGCoxcW18KHms8sMwl6tG28n8VXk0hN2mf_YChaam0DE&usqp=CAU" alt = ""/>
+                    <img src = {tickets.posterURL} alt = ""/>
                 </div>
                 <div className = "sessions-info">
-                    <p>Enola Holmes</p>
-                    <p>Quinta-feira - 15:00</p>
+                    <p>{tickets.title}</p>
+                    <p>{tickets.session.weekday} - {tickets.session.hour}</p>
                 </div>
             </footer>
         </div>
