@@ -1,0 +1,25 @@
+.seat{
+    margin: 9px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 12px;
+}
+
+.available{
+    background: #C3CFD9;
+    border: 1px solid #808F9D;
+}
+
+.unavailable{
+    background: #FBE192;
+    border: 1px solid #F7C52B;
+}
+
+.selected{
+    background: #8DD7CF;
+    border: 1px solid #45BDB0;
+}
+

@@ -1,17 +1,13 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react'
+import Seat from './Seat/Seat';
 import { Link } from 'react-router-dom';
 import './SessionsSeats.css'
 
 const SessionsSeats = ({ tickets, setTickets, buyer, setBuyer }) =>{
     const [cpf, setCpf] = useState("");
     const [buyersName, setBuyersName] = useState("");
-    const [seats, setSeats] = useState([]);
-
-    const verifyStatus = (seat) => {
-        tickets.seats.seat.class =(seat.isAvailable ? "available" : "unavailable")
-        setSeats([...seats])
-    } 
+    const [seats, setSeats] = useState([])
 
     useEffect(() =>{
         axios(`https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/showtimes/${tickets.session.id}/seats`)
@@ -19,26 +15,13 @@ const SessionsSeats = ({ tickets, setTickets, buyer, setBuyer }) =>{
                 setSeats([...res.data.seats]);
             })
             
-        seats.forEach(seat => verifyStatus(seat));
-
-        console.log(tickets);
     }, []) 
 
     return(
         <div className = "seats-page-content">
             <h1>Selecione o(s) assento(s)</h1>
             <ul className = "seats-container">
-               {seats.map(seat =>{
-
-                    return(
-                        <li 
-                            className = {`seat ${seat.class}`} 
-                            key = {seat.id}
-                        >
-                        {seat.name}
-                        </li>
-                    )
-                })}
+               {seats.map(seat =><Seat seat = {seat} tickets = {tickets} setTickets = {setTickets}/>)}
             </ul>
             <div className = "seats-status-container">
                 <div>
