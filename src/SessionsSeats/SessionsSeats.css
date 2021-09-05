@@ -49,28 +49,6 @@ h1{
     border-radius: 17px;
 }
 
-.buyers-info{
-    margin: 40px 24px 0px 24px;
-    display: flex;
-    flex-direction: column;
-}
-
-.buyers-info p{
-    margin-bottom: 5px;
-    font-size: 18px;
-    color: #293845;
-}
-
-.buyers-info input{
-    padding-left: 18px;
-    margin-bottom: 10px;
-    width: calc(100vw - 48px);
-    height: 51px;
-    background: #FFFFFF;
-    border: 1px solid #D5D5D5;
-    border-radius: 3px;
-}
-
 footer{
     display: flex;
     align-items: center;

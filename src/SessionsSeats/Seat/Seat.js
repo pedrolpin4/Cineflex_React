@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./Seat.css";
 
-const Seat = ({seat, tickets, setTickets}) => {
+const Seat = ({seat, ids, setIds}) => {
     const [seatsStatus, setSeatsStatus] = useState("available");
 
     const verifyStatus = () => {
@@ -11,9 +11,10 @@ const Seat = ({seat, tickets, setTickets}) => {
     const reserveSeat = () => {
         if(seatsStatus === "available"){
             setSeatsStatus("selected")
-            console.log(tickets);
+            setIds([...ids, seat.name])
         } else if(seatsStatus === "selected"){
             setSeatsStatus("available")
+            setIds(ids.filter(element => element === seat.name))    
         }
     }
 

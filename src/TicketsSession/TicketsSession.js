@@ -36,11 +36,10 @@ const TicketsSession = ({ tickets, setTickets }) => {
                     <h2>{day.weekday} - {day.date}</h2>
                     <div className = "sessions-container">
                         {day.showtimes.map(session => {
-                            console.log(session);
                             return (
                             <Link onClick = {() => passSessionInfo(day, session)} to = {`/seats/${session.id}`}>
                                 <div className = "session" key = {session.id}>
-                                    {session.name}
+                                   <p>{session.name}</p> 
                                 </div>
                             </Link>
                         )})}
