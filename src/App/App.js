@@ -55,7 +55,7 @@ function App() {
             setBuyer = {setBuyer}
           />
         </Route>
-        <Route path = "/confirmation-screen" exact>
+        <Route path = "/success" exact>
           <ConfirmationScreen 
             tickets = {tickets}
             buyer = {buyer}

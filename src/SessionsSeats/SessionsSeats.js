@@ -21,7 +21,7 @@ const SessionsSeats = ({ tickets, setTickets, buyer, setBuyer }) =>{
         axios.post(
         "https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/seats/book-many",
         {ids, name, cpf}
-        )
+        ).then(console.log("deu bom"))
         setTickets({...tickets, seats: [...ids]})
         console.log(tickets, buyer);
     }
@@ -57,11 +57,14 @@ const SessionsSeats = ({ tickets, setTickets, buyer, setBuyer }) =>{
             setBuyer = {setBuyer}
             />
 
-            <div className = "reserve-seats" 
-            onClick = {() => passBuyersAndIdsInfo(ids, buyer.name, buyer.cpf)}
+            <Link 
+                to = "/success" 
+                onClick = {() => passBuyersAndIdsInfo(ids, buyer.name, buyer.cpf)}
             >
-                Reservar assento(s)
-            </div>
+                <div className = "reserve-seats">
+                    Reservar assento(s)
+                </div>
+            </Link>
 
             <footer>
                 <div className = "mini-poster">

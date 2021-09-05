@@ -21,6 +21,7 @@ const TicketsSession = ({ tickets, setTickets }) => {
         setTickets({...tickets,
         session: {
             id: session.id,
+            date: day.date,
             weekday: day.weekday,
             hour: session.name
         }
