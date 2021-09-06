@@ -14,13 +14,6 @@ const MoviesList = ({tickets, setTickets}) => {
             })
     },[])
     
-
-    const goToMovie = (movie) =>{
-        console.log(movie.id);
-        setMovieId(movie)
-        return movieId
-    }
-
    return(
         <div className = "movies-list-container">
             <h1>Selecione o filme</h1>
@@ -28,6 +21,7 @@ const MoviesList = ({tickets, setTickets}) => {
                 {movies.map(movie => {
                     return(
                         <MoviePoster 
+                        key = {movie.id}
                         movie = {movie}
                         tickets = {tickets}
                         setTickets = {setTickets}

@@ -12,32 +12,6 @@ h1{
     margin-bottom: 132px;
 }
 
-h2{
-    font-size: 20px;
-    color: #293845;
-    margin-left: 24px;
-}
-
-.sessions-container{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    margin: 25px 15px;
-}
-
-.session{
-    margin: 0px 9px;
-    width: 83px;
-    height: 43px;
-    background: #E8833A;
-    border-radius: 3px;
-    font-size: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #FFFFFF;
-}
-
 footer{
     display: flex;
     align-items: center;

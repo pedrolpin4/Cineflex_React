@@ -4,7 +4,7 @@ import {
     useState, 
     useEffect,
  } from 'react'
-import { Link } from 'react-router-dom'
+import SessionsDay from './SessionsDay/SessionsDay'
 
 const TicketsSession = ({ tickets, setTickets }) => {
 
@@ -33,19 +33,11 @@ const TicketsSession = ({ tickets, setTickets }) => {
             <h1>Selecione o Horário</h1>
             <div className = "tickets-page-content">
                 {days.map(day => (
-                <div key ={day.id}>
-                    <h2>{day.weekday} - {day.date}</h2>
-                    <div className = "sessions-container">
-                        {day.showtimes.map(session => {
-                            return (
-                            <Link onClick = {() => passSessionInfo(day, session)} to = {`/seats/${session.id}`}>
-                                <div className = "session" key = {session.id}>
-                                   <p>{session.name}</p> 
-                                </div>
-                            </Link>
-                        )})}
-                    </div>
-                </div>    
+                    <SessionsDay 
+                        key = {day.id}
+                        day = {day}
+                        passSessionInfo = {passSessionInfo}
+                    />    
                 ))}
             </div>
             <footer>
