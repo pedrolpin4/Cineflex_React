@@ -5,10 +5,9 @@ import BuyersInfo from './BuyersInfo/BuyersInfo';
 import { Link } from 'react-router-dom';
 import './SessionsSeats.css'
 
-const SessionsSeats = ({ tickets, setTickets, buyer, setBuyer }) =>{
+const SessionsSeats = ({ tickets, setTickets, buyers, setBuyers}) =>{
     const [seats, setSeats] = useState([]);
     const [ids, setIds] = useState([]);
-    const [statusPage, setStatusPage] = useState("");
 
     new RegExp("/^(([0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2})|([0-9]{11}))$/")
 
@@ -18,19 +17,15 @@ const SessionsSeats = ({ tickets, setTickets, buyer, setBuyer }) =>{
                 setSeats([...res.data.seats]);
             })
             
-    }, []) 
+    }, [tickets.session.id]) 
 
-    const passBuyersAndIdsInfo = (ids, cpf, name) => {
-        axios.post(
-            "https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/seats/book-many",
-            {ids, name, cpf})
-                .then(console.log("deu bom"))
-                .catch("deu ruim")
-            setTickets({...tickets, seats: [...ids]});
-    }
-
-    const verifyBuyersAndIdsInfo = () =>{
-        console.log(!!RegExp(buyer.cpfs));
+    const passBuyersAndIdsInfo = (ids, buyers) => {
+        buyers.forEach( buyer => {
+            axios.post(
+                "https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/seats/book-many",
+                {ids: [buyer.id], name: buyer.name, cpf: buyer.cpf})    
+        })
+        setTickets({...tickets, seats: [...ids]});   
     }
 
     return(
@@ -59,17 +54,17 @@ const SessionsSeats = ({ tickets, setTickets, buyer, setBuyer }) =>{
                     <p>Indisponível</p>
                 </div>
             </div>
-
-            <BuyersInfo 
-            buyer = {buyer}
-            setBuyer = {setBuyer}
-            verifyBuyersAndIdsInfo = {verifyBuyersAndIdsInfo}
-            ids = {ids} 
-            />
-
+            {ids.map(id => (
+                <BuyersInfo 
+                buyers = {buyers}
+                setBuyers = {setBuyers}
+                id = {id}
+                key = {`cpf - ${id}`}
+                />
+            ))}
             <Link 
                 to = {`/success`}
-                onClick = {() => passBuyersAndIdsInfo(ids, buyer.names, buyer.cpfs)}
+                onClick = {() => passBuyersAndIdsInfo(ids, buyers)}
             >
                 <div className = "reserve-seats">
                     Reservar assento(s)

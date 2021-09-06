@@ -39,3 +39,13 @@ h2{
     background: #E8833A;
     border-radius: 3px;                                                 
 }
+
+.buyer-info{
+    margin-top: 30px;
+}
+
+.seat-number{
+    color: #293845;
+    font-size: 22px;
+    font-weight: bold;
+}

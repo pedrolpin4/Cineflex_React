@@ -14,11 +14,7 @@ import { useState } from 'react';
 function App() {
 
   const [tickets, setTickets] = useState({})
-
-  const [buyer, setBuyer] = useState({
-    names: [],
-    cpfs: []
-  })
+  const [buyers, setBuyers] = useState([])
 
   return (
     <Router>
@@ -40,14 +36,14 @@ function App() {
           <SessionsSeats 
             tickets = {tickets}
             setTickets = {setTickets}
-            buyer = {buyer}
-            setBuyer = {setBuyer}
+            buyers = {buyers}
+            setBuyers = {setBuyers}
           />
         </Route>
         <Route path = "/success" exact>
           <ConfirmationScreen 
             tickets = {tickets}
-            buyer = {buyer}
+            buyers = {buyers}
           />
         </Route>
       </Switch>

@@ -9,7 +9,7 @@ const SessionsDay = ({day, passSessionInfo}) =>(
                 return (
                 <Link key ={session.id} onClick = {() => passSessionInfo(day, session)} to = {`/seats/${session.id}`}>
                     <div className = "session">
-                    <p>{session.name}</p> 
+                        <p>{session.name}</p> 
                     </div>
                 </Link>
             )})}

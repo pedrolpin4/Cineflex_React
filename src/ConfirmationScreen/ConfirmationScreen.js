@@ -1,6 +1,6 @@
 import './ConfirmationScreen.css'
 import { Link } from 'react-router-dom'
-const ConfirmationScreen = ({ tickets, buyer }) => {
+const ConfirmationScreen = ({ tickets, buyers }) => {
     return(
         <div className = "confirmation-container">
             <h1>Pedido feito<br/>com sucesso!</h1>
@@ -14,12 +14,13 @@ const ConfirmationScreen = ({ tickets, buyer }) => {
                 {tickets.seats.map(seat => <p key = {` seat ${seat}`}>Assento {seat}</p>)}
             </div>
             <div>
-                <h2>Comprador</h2>
-                {buyer.names.map((name, index) => (
-                    <p>Nome comprador {index + 1}: {name}</p>
-                ))}
-                {buyer.cpfs.map((cpf, index) => (
-                        <p>CPF comprador {index + 1}: {cpf}</p>                
+                <h2>Compradores</h2>
+                {buyers.map(buyer => (
+                    <div className = "buyer-info" key = {`A${buyer.id}`}> 
+                        <p className = "seat-number">Assento {buyer.id}</p>
+                        <p>Nome do comprador: {buyer.name}</p>
+                        <p>Cpf do comprador: {buyer.cpf}</p>
+                    </div>
                 ))}
             </div>
             <Link to = "/">

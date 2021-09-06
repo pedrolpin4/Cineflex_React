@@ -15,7 +15,7 @@ const TicketsSession = ({ tickets, setTickets }) => {
             .then((answer) => {
                 setDays([...answer.data.days]);
             })
-    },[])
+    },[tickets.id])
 
     const passSessionInfo = (day, session) => {
         setTickets({...tickets,
@@ -42,7 +42,7 @@ const TicketsSession = ({ tickets, setTickets }) => {
             </div>
             <footer>
                 <div className = "mini-poster">
-                    <img src = {tickets.posterURL}/>
+                    <img src = {tickets.posterURL} alt = ""/>
                 </div>
                 <p>{tickets.title}</p>
             </footer>
