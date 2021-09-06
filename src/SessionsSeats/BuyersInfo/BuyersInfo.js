@@ -14,7 +14,7 @@ const BuyersInfo = ({ id, buyers, setBuyers}) => {
             .replace(/(-\d{2})\d+?$/, '$1');
     }
 
-    useEffect(() => setBuyers([...buyers, {name: name, cpf: cpf, id: id}]), [])
+    useEffect(() => setBuyers([...buyers, {name: name, cpf: cpf, id: id}]), [buyers, id, cpf, name, setBuyers])
 
     return (
         <>
