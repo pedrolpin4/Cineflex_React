@@ -17,7 +17,7 @@ const SessionsSeats = ({ tickets, setTickets, buyers, setBuyers}) =>{
                 setSeats([...res.data.seats]);
             })
             
-    }, [tickets.session.id]) 
+    }, []) 
 
     const passBuyersAndIdsInfo = (ids, buyers) => {
         buyers.forEach( buyer => {

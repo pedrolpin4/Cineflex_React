@@ -18,7 +18,7 @@ const Seat = ({seat, ids, setIds}) => {
         }
     }
 
-    useEffect(verifyStatus, [seat.isAvailable]);
+    useEffect(verifyStatus, []);
 
     return( <li 
         className = {`seat ${seatsStatus}`} 
