@@ -15,8 +15,12 @@ const ConfirmationScreen = ({ tickets, buyer }) => {
             </div>
             <div>
                 <h2>Comprador</h2>
-                <p>Nome: {buyer.name}</p>
-                <p>CPF: {buyer.cpf}</p>
+                {buyer.names.map((name, index) => (
+                    <p>Nome comprador {index + 1}: {name}</p>
+                ))}
+                {buyer.cpfs.map((cpf, index) => (
+                        <p>CPF comprador {index + 1}: {cpf}</p>                
+                ))}
             </div>
             <Link to = "/">
                 <div className = "return-home">Voltar para Home</div>

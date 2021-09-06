@@ -14,7 +14,7 @@ const Seat = ({seat, ids, setIds}) => {
             setIds([...ids, seat.name])
         } else if(seatsStatus === "selected"){
             setSeatsStatus("available")
-            setIds(ids.filter(element => element === seat.name))    
+            setIds(ids.filter(element => element !== seat.name))    
         }
     }
 

@@ -14,21 +14,10 @@ import { useState } from 'react';
 function App() {
 
   const [tickets, setTickets] = useState({})
- 
- /* {
-      id: "",
-      title: "",
-      posterURL: "",
-      session: {
-        weekday: "",
-        hour: ""
-      },
-      seats: []
-  }
-*/
+
   const [buyer, setBuyer] = useState({
-    name: "",
-    cpf: ""
+    names: [],
+    cpfs: []
   })
 
   return (

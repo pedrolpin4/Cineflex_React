@@ -30,7 +30,7 @@ const SessionsSeats = ({ tickets, setTickets, buyer, setBuyer }) =>{
     }
 
     const verifyBuyersAndIdsInfo = () =>{
-        console.log(!!RegExp(buyer.cpf));
+        console.log(!!RegExp(buyer.cpfs));
     }
 
     return(
@@ -64,11 +64,12 @@ const SessionsSeats = ({ tickets, setTickets, buyer, setBuyer }) =>{
             buyer = {buyer}
             setBuyer = {setBuyer}
             verifyBuyersAndIdsInfo = {verifyBuyersAndIdsInfo}
+            ids = {ids} 
             />
 
             <Link 
                 to = {`/success`}
-                onClick = {() => passBuyersAndIdsInfo(ids, buyer.name, buyer.cpf)}
+                onClick = {() => passBuyersAndIdsInfo(ids, buyer.names, buyer.cpfs)}
             >
                 <div className = "reserve-seats">
                     Reservar assento(s)
