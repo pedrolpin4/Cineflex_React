@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import './MoviePoster.css'
 
-const MoviePoster = ({ movie, tickets, setTickets }) => {
+const MoviePoster = ({ movie, setTickets }) => {
    
    const passMovieInfo = () => {
         setTickets({

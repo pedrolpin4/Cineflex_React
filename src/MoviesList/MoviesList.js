@@ -23,10 +23,7 @@ const MoviesList = ({tickets, setTickets}) => {
                         <MoviePoster 
                         key = {movie.id}
                         movie = {movie}
-                        tickets = {tickets}
                         setTickets = {setTickets}
-                        movieId = {movieId}
-                        setMovieId = {setMovieId}
                     />)
                 })}
             </div>

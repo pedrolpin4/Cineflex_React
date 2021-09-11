@@ -11,10 +11,10 @@ const Seat = ({seat, ids, setIds}) => {
     const reserveSeat = () => {
         if(seatsStatus === "available"){
             setSeatsStatus("selected")
-            setIds([...ids, seat.name])
+            setIds([...ids, seat.id])
         } else if(seatsStatus === "selected"){
             setSeatsStatus("available")
-            setIds(ids.filter(element => element !== seat.name))    
+            setIds(ids.filter(element => element !== seat.id))    
         }
     }
 
