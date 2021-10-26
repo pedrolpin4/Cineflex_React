@@ -13,7 +13,7 @@ const ConfirmationScreen = ({ tickets, buyers }) => {
             </div>
             <div>
                 <h2>Ingressos</h2>
-                {tickets.seats.map(seat => <p key = {` seat ${seat}`}>Assento {seat}</p>)}
+                {tickets.seats.map(seat => <p key = {seat.id}>Assento {seat.name}</p>)}
             </div>
             <div>
                 <h2>Comprador</h2>

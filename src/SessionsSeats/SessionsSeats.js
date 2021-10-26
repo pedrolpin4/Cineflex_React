@@ -29,10 +29,19 @@ const SessionsSeats = ({ tickets, setTickets, buyers, setBuyers}) =>{
     }, [tickets.session.id]) 
 
     const passBuyersAndIdsInfo = (ids, buyers) => {
-        setBuyers({name, cpf: cpf.replace(".", "").replace(".", "").replace("-", ""), ids})
+        setBuyers({
+            name, 
+            cpf: cpf.replace(".", "").replace(".", "").replace("-", ""),
+            ids: ids.map(seat => seat.id)
+        })
+        
         axios.post(
             "https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/seats/book-many",
-            {name, cpf: cpf.replace(".", "").replace(".", "").replace("-", ""), ids})
+            {
+                name, 
+                cpf: cpf.replace(".", "").replace(".", "").replace("-", ""),
+                ids: ids.map(seat => seat.id)
+            })
             .then(() => {
                 history.push("/success")
             })    
