@@ -1,30 +1,41 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react'
 import Seat from './Seat/Seat';
-import BuyersInfo from './BuyersInfo/BuyersInfo';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import './SessionsSeats.css'
 
 const SessionsSeats = ({ tickets, setTickets, buyers, setBuyers}) =>{
+    const history = useHistory();
     const [seats, setSeats] = useState([]);
     const [ids, setIds] = useState([]);
+    const [name, setName] = useState("");
+    const [cpf, setCpf] = useState("");
 
-    new RegExp("/^(([0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2})|([0-9]{11}))$/")
+    const cpfMask = (cpf) => {
+        return cpf
+            .replace(/\D/g, '')
+            .replace(/(\d{3})(\d)/, '$1.$2')
+            .replace(/(\d{3})(\d)/, '$1.$2')
+            .replace(/(\d{3})(\d{1,2})/, '$1-$2')
+            .replace(/(-\d{2})\d+?$/, '$1');
+    }
 
     useEffect(() =>{
         axios(`https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/showtimes/${tickets.session.id}/seats`)
             .then((res) => {
                 setSeats([...res.data.seats]);
             })
-            
-    }, []) 
+            .catch(err => console.log(err))
+    }, [tickets.session.id]) 
 
     const passBuyersAndIdsInfo = (ids, buyers) => {
-        buyers.forEach( buyer => {
-            axios.post(
-                "https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/seats/book-many",
-                {ids: [buyer.id], name: buyer.name, cpf: buyer.cpf})    
-        })
+        setBuyers({name, cpf: cpf.replace(".", "").replace(".", "").replace("-", ""), ids})
+        axios.post(
+            "https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/seats/book-many",
+            {name, cpf: cpf.replace(".", "").replace(".", "").replace("-", ""), ids})
+            .then(() => {
+                history.push("/success")
+            })    
         setTickets({...tickets, seats: [...ids]});   
     }
 
@@ -54,23 +65,24 @@ const SessionsSeats = ({ tickets, setTickets, buyers, setBuyers}) =>{
                     <p>Indisponível</p>
                 </div>
             </div>
-            {ids.map(id => (
-                <BuyersInfo 
-                buyers = {buyers}
-                setBuyers = {setBuyers}
-                id = {id}
-                key = {`cpf - ${id}`}
-                />
-            ))}
-            <Link 
-                to = {`/success`}
-                onClick = {() => passBuyersAndIdsInfo(ids, buyers)}
-            >
-                <div className = "reserve-seats">
+                <div className ="buyers-info" >
+                    <p>Nome do comprador:</p>
+                    <input 
+                        placeholder = "Digite seu nome..." 
+                        onChange = {e => setName(e.target.value)}
+                        value = {name}
+                    />
+                    <p>CPF do comprador:</p>
+                    <input 
+                        placeholder = "Digite seu CPF..."
+                        onChange = {e => setCpf(e.target.value)}
+                        value = {cpfMask(cpf)}
+                        pattern = "[0-9]{11}"
+                    />
+                </div>
+                <div className = "reserve-seats"  onClick = {() => passBuyersAndIdsInfo(ids, buyers)}>
                     Reservar assento(s)
                 </div>
-            </Link>
-
             <footer>
                 <div className = "mini-poster">
                     <img src = {tickets.posterURL} alt = ""/>

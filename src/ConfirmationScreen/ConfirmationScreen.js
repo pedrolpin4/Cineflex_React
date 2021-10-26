@@ -1,6 +1,10 @@
 import './ConfirmationScreen.css'
 import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
 const ConfirmationScreen = ({ tickets, buyers }) => {
+
+    useEffect(() => console.log(buyers));
+
     return(
         <div className = "confirmation-container">
             <h1>Pedido feito<br/>com sucesso!</h1>
@@ -14,14 +18,18 @@ const ConfirmationScreen = ({ tickets, buyers }) => {
                 {tickets.seats.map(seat => <p key = {` seat ${seat}`}>Assento {seat}</p>)}
             </div>
             <div>
-                <h2>Compradores</h2>
-                {buyers.map(buyer => (
-                    <div className = "buyer-info" key = {`A${buyer.id}`}> 
-                        <p className = "seat-number">Assento {buyer.id}</p>
-                        <p>Nome do comprador: {buyer.name}</p>
-                        <p>Cpf do comprador: {buyer.cpf}</p>
-                    </div>
-                ))}
+                <h2>Comprador</h2>
+                <div className = "buyer-info" key = {`A${buyers.id}`}> 
+                    <p>Nome do comprador: {buyers.name}</p>
+                    <p>Cpf do comprador: {
+                    buyers.cpf
+                        .replace(/\D/g, '')
+                        .replace(/(\d{3})(\d)/, '$1.$2')
+                        .replace(/(\d{3})(\d)/, '$1.$2')
+                        .replace(/(\d{3})(\d{1,2})/, '$1-$2')
+                        .replace(/(-\d{2})\d+?$/, '$1')
+                    }</p>
+                </div>
             </div>
             <Link to = "/">
                 <div className = "return-home">Voltar para Home</div>

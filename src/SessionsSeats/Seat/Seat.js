@@ -11,14 +11,14 @@ const Seat = ({seat, ids, setIds}) => {
     const reserveSeat = () => {
         if(seatsStatus === "available"){
             setSeatsStatus("selected")
-            setIds([...ids, seat.id])
+            setIds([...ids, Number(seat.name)])
         } else if(seatsStatus === "selected"){
             setSeatsStatus("available")
-            setIds(ids.filter(element => element !== seat.id))    
+            setIds(ids.filter(element => element !== Number(seat.name)))    
         }
     }
 
-    useEffect(verifyStatus, []);
+    useEffect(verifyStatus, [seat.isAvailable]);
 
     return( <li 
         className = {`seat ${seatsStatus}`} 

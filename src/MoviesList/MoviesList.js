@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react';
 
 const MoviesList = ({tickets, setTickets}) => {
     const [movies, setMovies] = useState([])
-    const [movieId, setMovieId] = useState("")
 
     useEffect(() => {
         axios("https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/movies")
