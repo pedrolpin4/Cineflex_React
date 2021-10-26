@@ -1,9 +1,7 @@
 import './ConfirmationScreen.css'
 import { Link } from 'react-router-dom'
-import { useEffect } from 'react'
-const ConfirmationScreen = ({ tickets, buyers }) => {
 
-    useEffect(() => console.log(buyers));
+const ConfirmationScreen = ({ tickets, buyers }) => {
 
     return(
         <div className = "confirmation-container">

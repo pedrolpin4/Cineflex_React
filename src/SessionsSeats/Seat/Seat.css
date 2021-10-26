@@ -1,4 +1,5 @@
 .seat{
+    cursor: pointer;
     margin: 9px 8px;
     display: flex;
     align-items: center;
