@@ -1,6 +1,6 @@
 h2{
     font-size: 20px;
-    color: #293845;
+    color: #bbb;
     margin-left: 24px;
 }
 
@@ -15,11 +15,23 @@ h2{
     margin: 0px 9px;
     width: 83px;
     height: 43px;
-    background: #E8833A;
+    background: #333;
     border-radius: 3px;
     font-size: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #FFFFFF;
+    color: #ff6a00;
+}
+
+.session:hover{
+    filter: brightness(110%);
+    text-shadow: 0 0 7px #ff6a00;
+    transform: translateY(-5%);
+    box-shadow: 0 3px 2px 0 #ff6a00;
+}
+
+.session:active{
+    box-shadow: 0 1.5px 1px 0 #ff6a00;
+    transform: translateY(-2%);
 }

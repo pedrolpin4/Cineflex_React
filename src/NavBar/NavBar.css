@@ -7,11 +7,17 @@
     position: fixed;
     top: 0px;
     left: 0px;
-    background-color: #C3CFD9;
+    background-color: #333;
+    z-index: 3;
 }
 
 .nav-bar p {
     cursor: pointer;
     font-size: 34px;
-    color: #E8833A
+    color: #ff6a00;
+}
+
+.nav-bar p:hover{
+    filter: brightness(110%);
+    text-shadow: 0 0 7px #ff6a00;
 }

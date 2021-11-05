@@ -13,20 +13,20 @@ const ConfirmationScreen = ({ tickets, buyers }) => {
             </div>
             <div>
                 <h2>Ingressos</h2>
-                {tickets.seats.map(seat => <p key = {seat.id}>Assento {seat.name}</p>)}
+                {tickets.seats.map(seat => <p key = {seat.id}>Assento <span className = "white">{seat.name}</span></p>)}
             </div>
             <div>
                 <h2>Comprador</h2>
                 <div className = "buyer-info" key = {`A${buyers.id}`}> 
-                    <p>Nome do comprador: {buyers.name}</p>
-                    <p>Cpf do comprador: {
+                    <p>Nome do comprador: <span className = "white">{buyers.name}</span></p>
+                    <p>Cpf do comprador: <span className = "white">{
                     buyers.cpf
                         .replace(/\D/g, '')
                         .replace(/(\d{3})(\d)/, '$1.$2')
                         .replace(/(\d{3})(\d)/, '$1.$2')
                         .replace(/(\d{3})(\d{1,2})/, '$1-$2')
                         .replace(/(-\d{2})\d+?$/, '$1')
-                    }</p>
+                    }</span></p>
                 </div>
             </div>
             <Link to = "/">

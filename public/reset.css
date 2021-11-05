@@ -50,21 +50,9 @@ textarea:focus, input:focus, select:focus {
     outline: 0;
 }
 
-::placeholder {
+input::placeholder {
     color: #D1D1D1;
-    font-style: italic;
-    font-size: 19px;
-}
-
-:-ms-input-placeholder{
-    color: #D1D1D1;
-    font-style: italic;
-    font-size: 19px;
-    opacity: 1;
-}
-
-::-ms-input-placeholder{
-    color: #D1D1D1;
+	opacity: 0.5;
     font-style: italic;
     font-size: 19px;
 }

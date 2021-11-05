@@ -1,14 +1,5 @@
 h1{
-    display: flex;
-    margin-top: 67px;
-    width: 100%;
-    height: 90px;
-    justify-content: center;
     text-align: center;
-    font-size: 24px;
-    line-height: 28px;
-    font-weight: bold;
-    color: #247A6B
 }
 
 .confirmation-container{
@@ -21,27 +12,46 @@ h2{
     margin: 20px 0px 10px 30px;
 }
 
+.white{
+    color: #fff;
+    filter: brightness(2.4);
+}
+
 .confirmation-container p{
     margin: 5px 0px 0px 30px;
     font-size: 20px;
-    color: #293845;
+    color: #ff7300;
 }
 
 .return-home{
+    cursor: pointer;
+    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #FFFFFF;
-    font-size: 18px;
-    margin: 80px calc((100vw - 225px)/2);                          
-    width: 225px;
-    height: 42px;
-    background: #E8833A;
-    border-radius: 3px;                                                 
+    font-size: 22px;
+    margin-top: 70px;
+    width: 250px;
+    height: 50px;
+    background: #333;
+    border-radius: 8px;
+    color: #ff6a00;
+}
+
+.return-home:hover{
+    filter: brightness(110%);
+    text-shadow: 0 0 5px #ff6a00;
+    transform: translateY(-5%);
+    box-shadow: 0 2px 2px 0 #ff6a00;
+}
+
+.return-home:active{
+    box-shadow: 0 1.5px 1px 0 #ff6a00;
+    transform: translateY(-2%);
 }
 
 .buyer-info{
-    margin-top: 30px;
+    margin-top: 15px;
 }
 
 .seat-number{
