@@ -1,11 +1,12 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Seat from './Seat/Seat';
 import { useHistory } from 'react-router-dom';
 import './SessionsSeats.css'
 
 const SessionsSeats = ({ tickets, setTickets, buyers, setBuyers}) =>{
     const history = useHistory();
+    const pageRef = useRef();
     const [seats, setSeats] = useState([]);
     const [ids, setIds] = useState([]);
     const [name, setName] = useState("");
@@ -27,6 +28,12 @@ const SessionsSeats = ({ tickets, setTickets, buyers, setBuyers}) =>{
             })
             .catch(err => console.log(err))
     }, [tickets.session.id]) 
+    
+    useEffect(() => {
+        pageRef.current.scrollIntoView({behavior: 'smooth'})
+    }, [])
+    
+    
 
     const passBuyersAndIdsInfo = (ids, buyers) => {
         setBuyers({
@@ -50,7 +57,7 @@ const SessionsSeats = ({ tickets, setTickets, buyers, setBuyers}) =>{
 
     return(
         <div className = "seats-page-content">
-            <h1>Selecione o(s) assento(s)</h1>
+            <h1 ref = {pageRef}>Selecione o(s) assento(s)</h1>
             <ul className = "seats-container">
                {seats.map(seat =>(
                     <Seat 
