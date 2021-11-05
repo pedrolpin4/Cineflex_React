@@ -144,4 +144,8 @@ h3{
     font-size: 18px;
     color: #ff6a00 !important;
     margin-left: 5px;
+
+    @media (max-width: 500px) {
+        font-size: 15px;
+    }
 }
