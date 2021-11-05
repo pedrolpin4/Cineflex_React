@@ -36,6 +36,7 @@ h2{
     background: #333;
     border-radius: 8px;
     color: #ff6a00;
+    transition: all .15s;
 }
 
 .return-home:hover{

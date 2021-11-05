@@ -76,6 +76,7 @@ h1{
     background: #333;
     border-radius: 8px;
     color: #ff6a00;
+    transition: all .15s;
 }
 
 .reserve-seats:hover{
