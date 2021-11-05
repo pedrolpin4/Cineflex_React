@@ -23,9 +23,18 @@
     z-index: 1;
 }
 
-
-
 .movie-poster img{
     width: 129px;
-    height: 193px;
+}
+
+@media (max-width: 600px) {
+    .movie-poster{
+        margin: 0px 15px 25px 15px;
+        width: 120px;
+        height: 175px;    
+    }
+
+    .movie-poster img{
+        width: 110px;
+    }
 }
