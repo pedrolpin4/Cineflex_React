@@ -52,7 +52,9 @@ h2{
     transition: all .15s;
 }
 
-.return-home:hover{
+.return-home:hover,
+.return-home:focus
+{
     filter: brightness(110%);
     text-shadow: 0 0 5px #ff6a00;
     transform: translateY(-5%);

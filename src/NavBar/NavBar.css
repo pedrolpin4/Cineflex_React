@@ -17,7 +17,9 @@
     color: #ff6a00;
 }
 
-.nav-bar p:hover{
+.nav-bar p:hover,
+.nav-bar p:focus
+{
     filter: brightness(110%);
     text-shadow: 0 0 7px #ff6a00;
 }

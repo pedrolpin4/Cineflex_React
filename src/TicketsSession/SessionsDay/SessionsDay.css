@@ -25,7 +25,8 @@ h2{
     transition: all .15s;
 }
 
-.session:hover{
+.session:hover,
+.session:focus{
     filter: brightness(110%);
     text-shadow: 0 0 7px #ff6a00;
     transform: translateY(-5%);

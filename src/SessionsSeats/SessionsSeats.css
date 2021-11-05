@@ -92,7 +92,9 @@ h1{
     transition: all .15s;
 }
 
-.reserve-seats:hover{
+.reserve-seats:hover,
+.reserve-seats:focus
+{
     text-shadow: 0 0 5px #ff6a00;
     transform: translateY(-5%);
     box-shadow: 0 2px 2px 0 #ff6a00;
@@ -145,7 +147,7 @@ h3{
     color: #ff6a00 !important;
     margin-left: 5px;
 
-    @media (max-width: 500px) {
+    @media (max-width: 600px) {
         font-size: 15px;
     }
 }
