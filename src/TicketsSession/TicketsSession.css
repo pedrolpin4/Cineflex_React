@@ -1,3 +1,15 @@
+@keyframes moveInRight {
+    0%{
+        opacity: 0;
+        transform: translateX(300px);
+    }
+
+    100%{
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
 h1{
     display: flex;
     margin-top: 67px;
@@ -11,6 +23,7 @@ h1{
 
 .tickets-page-content{
     margin-bottom: 132px;
+    animation: moveInRight .6s ease-in-out;
 }
 
 footer{

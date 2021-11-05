@@ -74,52 +74,54 @@ const SessionsSeats = ({ tickets, setTickets, buyers, setBuyers}) =>{
     }
 
     return(
-        <div className = "seats-page-content">
-            <h1 ref = {pageRef}>Select the Seats</h1>
-            <ul className = "seats-container">
-               {seats.map(seat =>(
-                    <Seat 
-                    key = {seat.name}
-                    seat = {seat} 
-                    ids = {ids} 
-                    setIds = {setIds}/>)
-               )}
-            </ul>
-            <div className = "seats-status-container">
-                <div>
-                    <div className = "seats-status selected"></div>
-                    <p>Selected</p>
+        <>
+            <div className = "seats-page-content">
+                <h1 ref = {pageRef}>Select the Seats</h1>
+                <ul className = "seats-container">
+                {seats.map(seat =>(
+                        <Seat 
+                        key = {seat.name}
+                        seat = {seat} 
+                        ids = {ids} 
+                        setIds = {setIds}/>)
+                )}
+                </ul>
+                <div className = "seats-status-container">
+                    <div>
+                        <div className = "seats-status selected"></div>
+                        <p>Selected</p>
+                    </div>
+                    <div>
+                        <div className = "seats-status available"></div>
+                        <p>Available</p>
+                    </div>
+                    <div>
+                        <div className = "seats-status unavailable"></div>
+                        <p>Unavailable</p>
+                    </div>
                 </div>
-                <div>
-                    <div className = "seats-status available"></div>
-                    <p>Available</p>
-                </div>
-                <div>
-                    <div className = "seats-status unavailable"></div>
-                    <p>Unavailable</p>
-                </div>
-            </div>
-                <div className ="buyers-info" >
-                    <p>Buyer's name:</p>
-                    <input 
-                        placeholder = "Type your name..." 
-                        onChange = {e => setName(e.target.value)}
-                        value = {name}
-                    />
-                    <p className = "error">{errorMessageName}</p>
-                    <p>Buyer's cpf:</p>
-                    <input 
-                        placeholder = "Type your CPF..."
-                        onChange = {e => setCpf(e.target.value)}
-                        value = {cpfMask(cpf)}
-                        pattern = "[0-9]{11}"
-                    />
-                    <p className = "error">{errorMessageCpf}</p>
+                    <div className ="buyers-info" >
+                        <p>Buyer's name:</p>
+                        <input 
+                            placeholder = "Type your name..." 
+                            onChange = {e => setName(e.target.value)}
+                            value = {name}
+                        />
+                        <p className = "error">{errorMessageName}</p>
+                        <p>Buyer's cpf:</p>
+                        <input 
+                            placeholder = "Type your CPF..."
+                            onChange = {e => setCpf(e.target.value)}
+                            value = {cpfMask(cpf)}
+                            pattern = "[0-9]{11}"
+                        />
+                        <p className = "error">{errorMessageCpf}</p>
 
-                </div>
-                <div className = "reserve-seats"  onClick = {() => passBuyersAndIdsInfo(ids, buyers)}>
-                    Book now!
-                </div>
+                    </div>
+                    <div className = "reserve-seats"  onClick = {() => passBuyersAndIdsInfo(ids, buyers)}>
+                        Book now!
+                    </div>
+            </div>
             <footer>
                 <div className = "mini-poster">
                     <img src = {tickets.posterURL} alt = ""/>
@@ -129,7 +131,8 @@ const SessionsSeats = ({ tickets, setTickets, buyers, setBuyers}) =>{
                     <p>{tickets.session.weekday} - {tickets.session.hour}</p>
                 </div>
             </footer>
-        </div>
+        </>
+    
     )
 }
 
