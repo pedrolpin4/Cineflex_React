@@ -2,7 +2,6 @@
     cursor: pointer;
     margin: 9px 8px 9px 8px;
     display: flex;
-    transform: translateX(-19px);
     align-items: center;
     justify-content: center;
     width: 32px;
@@ -17,12 +16,12 @@
 }
 
 .available:hover{
-    transform: translateY(-5%) translateX(-19px);
+    transform: translateY(-5%);
     box-shadow: 0 2px 6px #fff;
 }
 
 .available:active{
-    transform: translateY(-1%) translateX(-19px);
+    transform: translateY(-1%);
     box-shadow: 0 1px 4px #fff;
 }
 
@@ -34,12 +33,12 @@
 }
 
 .unavailable:hover{
-    transform: translateY(-5%) translateX(-19px);
+    transform: translateY(-5%);
     box-shadow: 0 2px 6px #f9fd01;
 }
 
 .unavailable:active{
-    transform: translateY(-1%) translateX(-19px);
+    transform: translateY(-1%);
     box-shadow: 0 1px 4px #f9fd01;
 }
 
@@ -51,12 +50,12 @@
 }
 
 .selected:hover{
-    transform: translateY(-5%) translateX(-19px);
+    transform: translateY(-5%);
     box-shadow: 0 2px 6px #02fa02;
 }
 
 .selected:active{
-    transform: translateY(-1%) translateX(-19px);
+    transform: translateY(-1%);
     box-shadow: 0 1px 4px #02fa02;
 }
 

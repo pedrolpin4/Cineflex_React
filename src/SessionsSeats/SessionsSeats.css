@@ -80,7 +80,6 @@ h1{
 }
 
 .reserve-seats:hover{
-    filter: brightness(110%);
     text-shadow: 0 0 5px #ff6a00;
     transform: translateY(-5%);
     box-shadow: 0 2px 2px 0 #ff6a00;
