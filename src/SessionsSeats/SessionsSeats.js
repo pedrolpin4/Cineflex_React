@@ -75,8 +75,9 @@ const SessionsSeats = ({ tickets, setTickets, buyers, setBuyers}) =>{
 
     return(
         <>
+            <span ref = {pageRef}></span>
             <div className = "seats-page-content">
-                <h1 ref = {pageRef}>Select the Seats</h1>
+                <h1>Select the Seats</h1>
                 <ul className = "seats-container">
                 {seats.map(seat =>(
                         <Seat 
@@ -131,8 +132,7 @@ const SessionsSeats = ({ tickets, setTickets, buyers, setBuyers}) =>{
                     <p>{tickets.session.weekday} - {tickets.session.hour}</p>
                 </div>
             </footer>
-        </>
-    
+        </>    
     )
 }
 

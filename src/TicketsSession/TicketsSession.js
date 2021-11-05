@@ -29,7 +29,7 @@ const TicketsSession = ({ tickets, setTickets }) => {
     }
 
     return(
-        <>
+        <div className = "h1-holder">
             <h1>Select the Session</h1>
             <div className = "tickets-page-content">
                 {days.map(day => (
@@ -46,7 +46,7 @@ const TicketsSession = ({ tickets, setTickets }) => {
                 </div>
                 <p>{tickets.title}</p>
             </footer>
-        </>
+        </div>
     )
 }
 

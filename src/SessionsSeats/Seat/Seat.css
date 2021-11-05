@@ -69,3 +69,10 @@
 .selected p{
     font-size: 12px;
 }
+
+@media (max-width: 600px) {
+    .seat{
+       width: 26px;
+       height: 26px;
+    }
+}

@@ -10,7 +10,7 @@
     }
 }
 
-h1{
+.h1-holder h1{
     display: flex;
     margin-top: 67px;
     width: 100%;
@@ -19,6 +19,7 @@ h1{
     align-items: center;
     font-size: 24px;
     color: #bbb !important;
+    animation: moveInRight .6s ease-in-out;
 }
 
 .tickets-page-content{
