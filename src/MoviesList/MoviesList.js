@@ -15,7 +15,7 @@ const MoviesList = ({tickets, setTickets}) => {
     
    return(
         <div className = "movies-list-container">
-            <h1>Selecione o filme</h1>
+            <h1>Select the Movie</h1>
             <div className = "posters-container">
                 {movies.map(movie => {
                     return(

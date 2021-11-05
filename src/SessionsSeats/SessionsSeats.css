@@ -109,6 +109,7 @@ h3{
     margin-left: 5px;
     font-size: 20px;
     color: #bbbbbb;
+    margin-top: 15px;
 }
 
 .buyers-info input{
@@ -116,11 +117,18 @@ h3{
     font-size: 20px;
     color: #ddd;
     font-family: 'Roboto', sans-serif;
-    margin-bottom: 25px;
     width: calc(100vw - 48px);
     height: 51px;
+    margin-bottom: 0px;
     background: #222;
     border-radius: 3px;
     border: none;
     outline: none;
+}
+
+.error{
+    margin-top: 0px;
+    font-size: 18px;
+    color: #ff6a00 !important;
+    margin-left: 5px;
 }

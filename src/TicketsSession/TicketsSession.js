@@ -17,12 +17,12 @@ const TicketsSession = ({ tickets, setTickets }) => {
             })
     },[tickets.id])
 
-    const passSessionInfo = (day, session) => {
+    const passSessionInfo = (day, session, weekday) => {
         setTickets({...tickets,
         session: {
             id: session.id,
             date: day.date,
-            weekday: day.weekday,
+            weekday: weekday,
             hour: session.name
         }
     } )
@@ -30,7 +30,7 @@ const TicketsSession = ({ tickets, setTickets }) => {
 
     return(
         <>
-            <h1>Selecione o Horário</h1>
+            <h1>Select the Session</h1>
             <div className = "tickets-page-content">
                 {days.map(day => (
                     <SessionsDay 

@@ -11,6 +11,8 @@ const SessionsSeats = ({ tickets, setTickets, buyers, setBuyers}) =>{
     const [ids, setIds] = useState([]);
     const [name, setName] = useState("");
     const [cpf, setCpf] = useState("");
+    const [errorMessageName, setErrorMessageName] = useState("")
+    const [errorMessageCpf, setErrorMessageCpf] = useState("")
 
     const cpfMask = (cpf) => {
         return cpf
@@ -35,29 +37,45 @@ const SessionsSeats = ({ tickets, setTickets, buyers, setBuyers}) =>{
     
     
 
-    const passBuyersAndIdsInfo = (ids, buyers) => {
-        setBuyers({
-            name, 
-            cpf: cpf.replace(".", "").replace(".", "").replace("-", ""),
-            ids: ids.map(seat => seat.id)
-        })
-        
-        axios.post(
-            "https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/seats/book-many",
-            {
+    const passBuyersAndIdsInfo = (ids, buyers) => { 
+        console.log(cpf.length, cpf);
+        if(name.length < 3){
+            setErrorMessageName("Your name must be at least 3 characters length")
+        } else{
+            setErrorMessageName("")
+        }
+
+        if(cpf.length < 14){
+            setErrorMessageCpf("Your cpf must be a valid one!!")
+        } else{
+            setErrorMessageCpf("")
+        }
+
+
+        if(name.length >= 3 && cpf.length === 14){
+            setBuyers({
                 name, 
                 cpf: cpf.replace(".", "").replace(".", "").replace("-", ""),
                 ids: ids.map(seat => seat.id)
             })
-            .then(() => {
-                history.push("/success")
-            })    
-        setTickets({...tickets, seats: [...ids]});   
+            
+            axios.post(
+                "https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/seats/book-many",
+                {
+                    name, 
+                    cpf: cpf.replace(".", "").replace(".", "").replace("-", ""),
+                    ids: ids.map(seat => seat.id)
+                })
+                .then(() => {
+                    history.push("/success")
+                })    
+            setTickets({...tickets, seats: [...ids]});       
+        }
     }
 
     return(
         <div className = "seats-page-content">
-            <h1 ref = {pageRef}>Selecione o(s) assento(s)</h1>
+            <h1 ref = {pageRef}>Select the Seats</h1>
             <ul className = "seats-container">
                {seats.map(seat =>(
                     <Seat 
@@ -70,34 +88,37 @@ const SessionsSeats = ({ tickets, setTickets, buyers, setBuyers}) =>{
             <div className = "seats-status-container">
                 <div>
                     <div className = "seats-status selected"></div>
-                    <p>Selecionado</p>
+                    <p>Selected</p>
                 </div>
                 <div>
                     <div className = "seats-status available"></div>
-                    <p>Disponível</p>
+                    <p>Available</p>
                 </div>
                 <div>
                     <div className = "seats-status unavailable"></div>
-                    <p>Indisponível</p>
+                    <p>Unavailable</p>
                 </div>
             </div>
                 <div className ="buyers-info" >
-                    <p>Nome do comprador:</p>
+                    <p>Buyer's name:</p>
                     <input 
-                        placeholder = "Digite seu nome..." 
+                        placeholder = "Type your name..." 
                         onChange = {e => setName(e.target.value)}
                         value = {name}
                     />
-                    <p>CPF do comprador:</p>
+                    <p className = "error">{errorMessageName}</p>
+                    <p>Buyer's cpf:</p>
                     <input 
-                        placeholder = "Digite seu CPF..."
+                        placeholder = "Type your CPF..."
                         onChange = {e => setCpf(e.target.value)}
                         value = {cpfMask(cpf)}
                         pattern = "[0-9]{11}"
                     />
+                    <p className = "error">{errorMessageCpf}</p>
+
                 </div>
                 <div className = "reserve-seats"  onClick = {() => passBuyersAndIdsInfo(ids, buyers)}>
-                    Reservar assento(s)
+                    Book now!
                 </div>
             <footer>
                 <div className = "mini-poster">
