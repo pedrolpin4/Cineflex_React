@@ -12,7 +12,6 @@ import {
 import  {useState } from 'react';
 
 function App() {
-
   const [tickets, setTickets] = useState({})
   const [buyers, setBuyers] = useState([])
 
@@ -20,18 +19,8 @@ function App() {
     <Router>
       <NavBar />
       <Switch>
-        <Route path = "/" exact>
-          <MoviesList 
-          tickets = {tickets}
-          setTickets = {setTickets}
-          />
-        </Route>
-        <Route path = "/sessions/:movieId" exact>
-          <TicketsSession 
-            tickets = {tickets}
-            setTickets = {setTickets}
-          />
-        </Route>
+        <Route path = "/" exact component = {MoviesList} />
+        <Route path = "/sessions/:movieId" exact component = {TicketsSession} />
         <Route path = "/seats/:sessionId" exact>
           <SessionsSeats 
             tickets = {tickets}

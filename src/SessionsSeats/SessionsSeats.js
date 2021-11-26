@@ -3,11 +3,16 @@ import { useEffect, useRef, useState } from 'react'
 import Seat from './Seat/Seat';
 import { useHistory } from 'react-router-dom';
 import './SessionsSeats.css';
+import weekDayFactory from '../factories/weekdayFactory';
 
 const SessionsSeats = ({ tickets, setTickets, buyers, setBuyers}) =>{
     const history = useHistory();
     const pageRef = useRef();
     const [seats, setSeats] = useState([]);
+    const [sessionInfo, setSessionInfo] = useState({
+        movie: {},
+        session: {},
+    })
     const [ids, setIds] = useState([]);
     const [name, setName] = useState("");
     const [cpf, setCpf] = useState("");
@@ -23,13 +28,16 @@ const SessionsSeats = ({ tickets, setTickets, buyers, setBuyers}) =>{
             .replace(/(-\d{2})\d+?$/, '$1');
     }
 
+    const weekday = weekDayFactory(sessionInfo.session.weekday);
+
     useEffect(() =>{
-        axios(`https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/showtimes/${tickets.session.id}/seats`)
+        axios(`http://localhost:4000/sessions/${140}/seats`)
             .then((res) => {
                 setSeats([...res.data.seats]);
+                setSessionInfo({...res.data})
             })
             .catch(err => console.log(err))
-    }, [tickets.session.id]);
+    }, []);
     
     useEffect(() => {
         pageRef.current.scrollIntoView({behavior: 'smooth'})
@@ -121,15 +129,15 @@ const SessionsSeats = ({ tickets, setTickets, buyers, setBuyers}) =>{
                         Book now!
                     </div>
             </div>
-            <footer>
+            {<footer>
                 <div className = "mini-poster">
-                    <img src = {tickets.posterURL} alt = ""/>
+                    <img src = {sessionInfo.movie.image} alt = ""/>
                 </div>
                 <div className = "sessions-info">
-                    <p>{tickets.title}</p>
-                    <p>{tickets.session.weekday} - {tickets.session.hour}</p>
+                    <p>{sessionInfo.movie.title}</p>
+                    <p>{weekday} - {sessionInfo.session.hour}</p>
                 </div>
-            </footer>
+            </footer>}
         </>    
     )
 }

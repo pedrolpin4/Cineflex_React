@@ -8,7 +8,6 @@ import SessionsDay from './SessionsDay/SessionsDay'
 import { useParams } from 'react-router'
 
 const TicketsSession = () => {
-
     const {
         movieId
     } = useParams();
@@ -17,7 +16,6 @@ const TicketsSession = () => {
         movie: {}
     });
     const [sessionsDays, setSessionsDays] = useState([]);
-    console.log(sessions);
 
     useEffect(() => {
         axios(`http://localhost:4000/movies/${movieId}/sessions`)
@@ -67,6 +65,7 @@ const TicketsSession = () => {
                 {sessionsDays.map((day) => (
                     <SessionsDay 
                         day = {day}
+                        key = {day.id}
                     />    
                 ))}
             </div>
