@@ -1,11 +1,15 @@
 import axios from 'axios';
 import { useEffect, useRef, useState } from 'react'
 import Seat from './Seat/Seat';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import './SessionsSeats.css';
 import weekDayFactory from '../factories/weekdayFactory';
 
 const SessionsSeats = ({ tickets, setTickets, buyers, setBuyers}) =>{
+    const {
+        sessionId
+    } = useParams();
+
     const history = useHistory();
     const pageRef = useRef();
     const [seats, setSeats] = useState([]);
@@ -31,7 +35,7 @@ const SessionsSeats = ({ tickets, setTickets, buyers, setBuyers}) =>{
     const weekday = weekDayFactory(sessionInfo.session.weekday);
 
     useEffect(() =>{
-        axios(`http://localhost:4000/sessions/${140}/seats`)
+        axios(`http://localhost:4000/sessions/${sessionId}/seats`)
             .then((res) => {
                 setSeats([...res.data.seats]);
                 setSessionInfo({...res.data})
