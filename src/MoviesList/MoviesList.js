@@ -4,13 +4,13 @@ import Loading from '../Loading';
 import axios from "axios";
 import { useEffect, useState } from 'react';
 
-const MoviesList = ({tickets, setTickets}) => {
+const MoviesList = () => {
     const [movies, setMovies] = useState([])
     const [isLoading, setIsLoading] = useState(true);
 
 
     useEffect(() => {
-        axios("https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/movies")
+        axios("http://localhost:4000/movies")
             .then((answer) => {
                 setIsLoading(false)
                 setMovies([...answer.data]);
@@ -30,7 +30,6 @@ const MoviesList = ({tickets, setTickets}) => {
                                 <MoviePoster 
                                 key = {movie.id}
                                 movie = {movie}
-                                setTickets = {setTickets}
                             />)
                         })}
                     </div>

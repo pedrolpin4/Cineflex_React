@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useEffect, useRef, useState } from 'react'
 import Seat from './Seat/Seat';
 import { useHistory } from 'react-router-dom';
-import './SessionsSeats.css'
+import './SessionsSeats.css';
 
 const SessionsSeats = ({ tickets, setTickets, buyers, setBuyers}) =>{
     const history = useHistory();
@@ -11,8 +11,8 @@ const SessionsSeats = ({ tickets, setTickets, buyers, setBuyers}) =>{
     const [ids, setIds] = useState([]);
     const [name, setName] = useState("");
     const [cpf, setCpf] = useState("");
-    const [errorMessageName, setErrorMessageName] = useState("")
-    const [errorMessageCpf, setErrorMessageCpf] = useState("")
+    const [errorMessageName, setErrorMessageName] = useState("");
+    const [errorMessageCpf, setErrorMessageCpf] = useState("");
 
     const cpfMask = (cpf) => {
         return cpf
@@ -29,13 +29,11 @@ const SessionsSeats = ({ tickets, setTickets, buyers, setBuyers}) =>{
                 setSeats([...res.data.seats]);
             })
             .catch(err => console.log(err))
-    }, [tickets.session.id]) 
+    }, [tickets.session.id]);
     
     useEffect(() => {
         pageRef.current.scrollIntoView({behavior: 'smooth'})
-    }, [])
-    
-    
+    }, []);
 
     const passBuyersAndIdsInfo = (ids, buyers) => { 
         console.log(cpf.length, cpf);

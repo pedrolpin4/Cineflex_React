@@ -1,35 +1,36 @@
 import { Link } from 'react-router-dom'
 import "./SessionsDay.css"
 
-const SessionsDay = ({day, passSessionInfo}) =>{
+const SessionsDay = ({ day }) =>{
+    
     let weekday = ""
 
     switch(day.weekday){
-        case "Domingo": {
+        case 0: {
             weekday = "Sunday"
             break;
         }
-        case "Sábado": {
+        case 1: {
             weekday = "Saturday"
             break;
         }
-        case "Segunda-feira": {
+        case 2: {
             weekday = "Monday"
             break;
         }
-        case "Terça-feira": {
+        case 3: {
             weekday = "Tuesday"
             break;
         }
-        case "Quarta-feira": {
+        case 4: {
             weekday = "Wednesday"
             break;
         }
-        case "Quinta-feira": {
+        case 5: {
             weekday = "Thursday"
             break;
         }
-        case "Sexta-feira": {
+        case 6: {
             weekday = "Friday"
             break;
         }
@@ -44,11 +45,11 @@ const SessionsDay = ({day, passSessionInfo}) =>{
         <div key ={day.id}>
             <h2>{weekday} - {day.date}</h2>
             <div className = "sessions-container">
-                {day.showtimes.map(session => {
+                {day.hours.map(session => {
                     return (
-                    <Link key ={session.id} onClick = {() => passSessionInfo(day, session, weekday)} to = {`/seats/${session.id}`}>
+                    <Link key ={session.id} to = {`/seats/${session.id}`}>
                         <div className = "session">
-                            <p>{session.name}</p> 
+                            <p>{session.hour}</p> 
                         </div>
                     </Link>
                 )})}
