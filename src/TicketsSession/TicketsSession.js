@@ -13,8 +13,11 @@ const TicketsSession = () => {
         movieId
     } = useParams();
 
-    const [sessions, setSessions] = useState([]);
+    const [sessions, setSessions] = useState({
+        movie: {}
+    });
     const [sessionsDays, setSessionsDays] = useState([]);
+    console.log(sessions);
 
     useEffect(() => {
         axios(`http://localhost:4000/movies/${movieId}/sessions`)
@@ -67,12 +70,12 @@ const TicketsSession = () => {
                     />    
                 ))}
             </div>
-            <footer>
-                <div className = "mini-poster">
-                    {/* <img src = {sessions.movie.image || ""} alt = ""/> */}
-                </div>
-                {/* <p>{sessions.movie.image || ""}</p> */}
-            </footer>
+                <footer>
+                    <div className = "mini-poster">
+                        <img src = {sessions  ? sessions?.movie.image : ""} alt = ""/>
+                    </div>
+                    <p>{sessions ? sessions?.movie.title : ""}</p>
+                </footer>
         </div>
     )
 }
