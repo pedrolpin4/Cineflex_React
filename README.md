@@ -5,7 +5,7 @@
 
 ## About
 
-Think about an ordinary movie theater, ok, now forget it! Cineflex is not an app for an ordinary movie theater, this platform is about a theater wich only broadcasts the IMDB 50 top rated movies. If you are a cinfile that loves to watch movies your family thinks like: "what? this is from the 60's", this is the app for you.
+Think about an ordinary movie theater, ok, now forget it! Cineflex is not an app for an ordinary movie theater, this platform is about a theater wich only broadcasts the IMDB 50 top rated movies. If you are a cinfile that loves to watch movies your family thinks like: "what? this is from the 60's", this is the theater for you to go.
 
 ## FAQ
 
