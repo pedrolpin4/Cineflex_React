@@ -59,7 +59,11 @@ const SessionsSeats = ({setTickets}) =>{
         return true
     }
 
-    const reservateSeat = async (body) =>{
+    const reservateSeat = async (body) => {
+        if(!ids.length) {
+            return;
+        }
+
         const result = await bookSeats(body);
         
         if(result.success){
