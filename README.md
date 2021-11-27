@@ -1,5 +1,3 @@
-    https://user-images.githubusercontent.com/87671165/143667676-c32e5dae-7406-4384-a2b5-c46f2de1f4c8.mov
-
 # Cineflex
 
 ## About
