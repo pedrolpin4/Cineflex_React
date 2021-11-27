@@ -3,7 +3,10 @@
 # Cineflex
 
 <p align="center" >
-<img src="https://assets6.lottiefiles.com/packages/lf20_akvlytur.json" width="300" height="300"/>
+<video class="bg-video__content" autoplay muted loop>
+    <source src="/public/assets/Screen Recording 2021-11-27 at 00.57.51.mov" type="video/mov">
+    Your browser is not supported!
+</video>
 </p>
 
 
