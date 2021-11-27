@@ -5,31 +5,9 @@
 
 ## About
 
-Aiming to encourage a healthier lifestyle, this app is a startup that delivers a box with healthy and #gratitude products. Customers will be able to choose between two recurring subscription plans, weekly or monthly. Each box contains assorted products such as teas, organic products and incenses. Customers cannot choose the products and do not know what will be shipped in each box. 😇
+Think about an ordinary movie theater, ok, now forget it! Cineflex is not an app for an ordinary movie theater, this platform is about a theater wich only broadcasts the IMDB 50 top rated movies. If your a cinfile and loves to watch movies that your family says: "what? this is from the 60's", this is the app for you.
 
 ## FAQ
-
-- What are your signature options?
-    - Plan types:
-        - Weekly: You receive a box per week.
-        - Monthly: You receive a box per mont.
-
-    - Delivery Options:
-        - Monthly: 1st, 10th or 20th of each month. In case the weekday day of the day you chose is Saturday or Sunday, you'll receive your box in the next Monday. 
-        - Weekly: Monday, Wednesday or Friday of each week. Don't worry, we make delivers on holidays.
-
- - What do I receive?
-    - You can choose between this 3 options:
-        - Teas
-        - Incenses
-        - Organic Products
-
-- What is required?
-    - Full Name
-    - Delivery Address
-    - Zip Code
-    - City
-    - State
 
 ## How to run?
 - Frontend
@@ -39,7 +17,7 @@ Aiming to encourage a healthier lifestyle, this app is a startup that delivers a
     - type "npm start" => the project will run in your localhost:3000;
     
 - Backend
-    - clone my repository GratiBox_BackEnd;
+    - clone my repository Cineflex_BackEnd;
     - Go to this repository path on your device's terminal;
     - type "npm i" => the necessary packages will be installed on your device;
     - open the file "database_backup.sql", then copy and paste the script on some database you'll create on your postgres terminal;
@@ -49,8 +27,8 @@ Aiming to encourage a healthier lifestyle, this app is a startup that delivers a
 
 ## What comes next?
 
-- On the next versions you'll experience a whole new web design you've never seen or heard
-- The rate Deliveries feature will blow your mind with the best feedback plataform on lifestyle signatures
+- On the next versions you'll be able to see a page with all the info you can imagine about the movies on Cineflex;
+- As a user, you'll be able to see your booking history and navigate on the site through a sidebar;
 
 ## Tecnologies I Used
 
@@ -58,10 +36,8 @@ Aiming to encourage a healthier lifestyle, this app is a startup that delivers a
 
 ![HTML](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white) 
 ![CSS](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
-![SASS Badge](https://img.shields.io/badge/Sass-CC6699?style=flat-square&logo=sass&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
 ![React](https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB)
-![husky](https://img.shields.io/badge/Cypress-182534?style=flat-square)
 
 #### **Back-end**
 
