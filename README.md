@@ -1,9 +1,8 @@
 # Cineflex
 
+![cineflex](https://user-images.githubusercontent.com/87671165/143668159-19e30204-3365-4b25-8eee-2baadbd3123e.gif)
+
 ## About
-
-![Screen Recording 2021-11-27 at 01 24 36](https://user-images.githubusercontent.com/87671165/143667972-238007ef-7b3d-4249-8cf0-9700416754f8.gif)
-
 
 Aiming to encourage a healthier lifestyle, this app is a startup that delivers a box with healthy and #gratitude products. Customers will be able to choose between two recurring subscription plans, weekly or monthly. Each box contains assorted products such as teas, organic products and incenses. Customers cannot choose the products and do not know what will be shipped in each box. 😇
 
