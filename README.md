@@ -1,12 +1,8 @@
 
-
 # Cineflex
 
 <p align="center" >
-<video class="bg-video__content" autoplay muted loop>
-    <source src="/public/assets/Screen Recording 2021-11-27 at 00.57.51.mov" type="video/mov">
-    Your browser is not supported!
-</video>
+    https://user-images.githubusercontent.com/87671165/143667676-c32e5dae-7406-4384-a2b5-c46f2de1f4c8.mov
 </p>
 
 
