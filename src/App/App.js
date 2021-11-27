@@ -13,7 +13,6 @@ import  {useState } from 'react';
 
 function App() {
   const [tickets, setTickets] = useState({})
-  const [buyers, setBuyers] = useState([])
 
   return (
     <Router>
@@ -22,18 +21,10 @@ function App() {
         <Route path = "/" exact component = {MoviesList} />
         <Route path = "/sessions/:movieId" exact component = {TicketsSession} />
         <Route path = "/seats/:sessionId" exact>
-          <SessionsSeats 
-            tickets = {tickets}
-            setTickets = {setTickets}
-            buyers = {buyers}
-            setBuyers = {setBuyers}
-          />
+          <SessionsSeats setTickets = {setTickets} />
         </Route>
         <Route path = "/success" exact>
-          <ConfirmationScreen 
-            tickets = {tickets}
-            buyers = {buyers}
-          />
+          <ConfirmationScreen tickets = {tickets}/>
         </Route>
       </Switch>
     </Router>

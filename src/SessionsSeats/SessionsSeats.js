@@ -5,7 +5,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import './SessionsSeats.css';
 import weekDayFactory from '../factories/weekdayFactory';
 
-const SessionsSeats = ({ tickets, setTickets, buyers, setBuyers}) =>{
+const SessionsSeats = ({setTickets}) =>{
     const {
         sessionId
     } = useParams();
@@ -40,15 +40,13 @@ const SessionsSeats = ({ tickets, setTickets, buyers, setBuyers}) =>{
                 setSeats([...res.data.seats]);
                 setSessionInfo({...res.data})
             })
-            .catch(err => console.log(err))
-    }, []);
+    }, [sessionId]);
     
     useEffect(() => {
         pageRef.current.scrollIntoView({behavior: 'smooth'})
     }, []);
 
-    const passBuyersAndIdsInfo = (ids, buyers) => { 
-        console.log(cpf.length, cpf);
+    const passBuyersAndIdsInfo = (ids) => { 
         if(name.length < 3){
             setErrorMessageName("Your name must be at least 3 characters length")
         } else{
@@ -63,23 +61,18 @@ const SessionsSeats = ({ tickets, setTickets, buyers, setBuyers}) =>{
 
 
         if(name.length >= 3 && cpf.length === 14){
-            setBuyers({
-                name, 
-                cpf: cpf.replace(".", "").replace(".", "").replace("-", ""),
-                ids: ids.map(seat => seat.id)
-            })
-            
-            axios.post(
-                "https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/seats/book-many",
-                {
-                    name, 
-                    cpf: cpf.replace(".", "").replace(".", "").replace("-", ""),
-                    ids: ids.map(seat => seat.id)
-                })
+            axios.post("http://localhost:4000/seats/bookmany", {
+                buyers: ids.map( e => ({ name, cpf: cpf.replace(".", "").replace(".", "").replace("-", ""), id: e.id}))})
                 .then(() => {
-                    history.push("/success")
-                })    
-            setTickets({...tickets, seats: [...ids]});       
+                    setTickets({
+                        title: sessionInfo.movie.title,
+                        date: sessionInfo.session.date,
+                        hour: sessionInfo.session.hour,
+                        seats: ids,
+                        buyer: { name, cpf: cpf.replace(".", "").replace(".", "").replace("-", "") }
+                    })
+                    history.push("/success");
+                })
         }
     }
 
@@ -129,7 +122,7 @@ const SessionsSeats = ({ tickets, setTickets, buyers, setBuyers}) =>{
                         <p className = "error">{errorMessageCpf}</p>
 
                     </div>
-                    <div className = "reserve-seats"  onClick = {() => passBuyersAndIdsInfo(ids, buyers)}>
+                    <div className = "reserve-seats"  onClick = {() => passBuyersAndIdsInfo(ids)}>
                         Book now!
                     </div>
             </div>

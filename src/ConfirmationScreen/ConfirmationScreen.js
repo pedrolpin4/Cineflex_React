@@ -1,7 +1,7 @@
 import './ConfirmationScreen.css'
 import { Link } from 'react-router-dom'
 
-const ConfirmationScreen = ({ tickets, buyers }) => {
+const ConfirmationScreen = ({ tickets }) => {
 
     return(
         <div className = "confirmation-container">
@@ -9,7 +9,7 @@ const ConfirmationScreen = ({ tickets, buyers }) => {
             <div>
                 <h2>Movie and session</h2>
                 <p>{tickets.title}</p>
-                <p>{tickets.session.date} - {tickets.session.hour}</p>
+                <p>{tickets.date} - {tickets.hour}</p>
             </div>
             <div>
                 <h2>Tickets</h2>
@@ -17,10 +17,10 @@ const ConfirmationScreen = ({ tickets, buyers }) => {
             </div>
             <div>
                 <h2>Buyer</h2>
-                <div className = "buyer-info" key = {`A${buyers.id}`}> 
-                    <p>Buyer's name: <span className = "white">{buyers.name}</span></p>
+                <div className = "buyer-info"> 
+                    <p>Buyer's name: <span className = "white">{tickets.buyer.name}</span></p>
                     <p>Buyer's cpf: <span className = "white">{
-                    buyers.cpf
+                    tickets.buyer.cpf
                         .replace(/\D/g, '')
                         .replace(/(\d{3})(\d)/, '$1.$2')
                         .replace(/(\d{3})(\d)/, '$1.$2')
