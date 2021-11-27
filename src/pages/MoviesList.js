@@ -1,21 +1,24 @@
-import './MoviesList.css'
-import MoviePoster from './MoviePoster/MoviePoster';
-import Loading from '../Loading';
-import axios from "axios";
+import '../styles/MoviesList.css'
+import MoviePoster from '../components/MoviePoster';
+import Loading from '../components/Loading';
 import { useEffect, useState } from 'react';
+import { getMovies } from '../services/moviesService';
 
 const MoviesList = () => {
     const [movies, setMovies] = useState([])
     const [isLoading, setIsLoading] = useState(true);
 
+    const listMovies = async () => {
+        setIsLoading(true)
+        const response = await getMovies();
 
-    useEffect(() => {
-        axios("http://localhost:4000/movies")
-            .then((answer) => {
-                setIsLoading(false)
-                setMovies([...answer.data]);
-            })
-    },[])
+        if(response.success){
+            setIsLoading(false)
+            setMovies(response.data)
+        }
+    }
+
+    useEffect(() => listMovies() ,[])
     
    return(
         <div className = "movies-list-container">

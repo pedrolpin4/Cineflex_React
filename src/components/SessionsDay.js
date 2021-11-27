@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
-import "./SessionsDay.css";
-import weekDayFactory from '../../factories/weekdayFactory';
+import "../styles/SessionsDay.css";
+import weekDayFactory from '../factories/weekdayFactory';
 
 const SessionsDay = ({ day }) =>{
     

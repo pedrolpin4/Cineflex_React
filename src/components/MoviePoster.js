@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import './MoviePoster.css'
+import '../styles/MoviePoster.css'
 
 const MoviePoster = ({ movie }) => {
    

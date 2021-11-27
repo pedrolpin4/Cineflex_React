@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "./Seat.css";
+import "../styles/Seat.css";
 
 const Seat = ({seat, ids, setIds}) => {
     const [seatsStatus, setSeatsStatus] = useState("available");

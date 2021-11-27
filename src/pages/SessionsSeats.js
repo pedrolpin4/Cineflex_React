@@ -1,9 +1,11 @@
-import axios from 'axios';
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useRef, useState } from 'react'
-import Seat from './Seat/Seat';
+import Seat from '../components/Seat';
 import { useHistory, useParams } from 'react-router-dom';
-import './SessionsSeats.css';
+import '../styles/SessionsSeats.css';
 import weekDayFactory from '../factories/weekdayFactory';
+import { cpfMask } from '../utils/masks';
+import { bookSeats, getSeats } from '../services/seatsService';
 
 const SessionsSeats = ({setTickets}) =>{
     const {
@@ -13,66 +15,82 @@ const SessionsSeats = ({setTickets}) =>{
     const history = useHistory();
     const pageRef = useRef();
     const [seats, setSeats] = useState([]);
-    const [sessionInfo, setSessionInfo] = useState({
-        movie: {},
-        session: {},
-    })
+    const [sessionInfo, setSessionInfo] = useState({movie: {}, session: {}});
     const [ids, setIds] = useState([]);
     const [name, setName] = useState("");
     const [cpf, setCpf] = useState("");
     const [errorMessageName, setErrorMessageName] = useState("");
     const [errorMessageCpf, setErrorMessageCpf] = useState("");
 
-    const cpfMask = (cpf) => {
-        return cpf
-            .replace(/\D/g, '')
-            .replace(/(\d{3})(\d)/, '$1.$2')
-            .replace(/(\d{3})(\d)/, '$1.$2')
-            .replace(/(\d{3})(\d{1,2})/, '$1-$2')
-            .replace(/(-\d{2})\d+?$/, '$1');
-    }
-
     const weekday = weekDayFactory(sessionInfo.session.weekday);
 
-    useEffect(() =>{
-        axios(`http://localhost:4000/sessions/${sessionId}/seats`)
-            .then((res) => {
-                setSeats([...res.data.seats]);
-                setSessionInfo({...res.data})
-            })
-    }, [sessionId]);
-    
+    const listSeats = async () => {
+        const response = await getSeats(sessionId);
+
+        if(response.success) {
+            setSeats(response.data.seats);
+            setSessionInfo(response.data)
+        }
+    }
+
     useEffect(() => {
         pageRef.current.scrollIntoView({behavior: 'smooth'})
+        listSeats()
     }, []);
 
-    const passBuyersAndIdsInfo = (ids) => { 
+    const verifyInfo = () => {
+
         if(name.length < 3){
             setErrorMessageName("Your name must be at least 3 characters length")
         } else{
             setErrorMessageName("")
         }
 
-        if(cpf.length < 14){
-            setErrorMessageCpf("Your cpf must be a valid one!!")
+        if(cpf.length !== 14){
+            setErrorMessageCpf("Your cpf must be a valid one!!");
         } else{
-            setErrorMessageCpf("")
+            setErrorMessageCpf("");
         }
 
+        if(name.length < 3 || cpf.length !== 14){
+            return null
+        }
 
-        if(name.length >= 3 && cpf.length === 14){
-            axios.post("http://localhost:4000/seats/bookmany", {
-                buyers: ids.map( e => ({ name, cpf: cpf.replace(".", "").replace(".", "").replace("-", ""), id: e.id}))})
-                .then(() => {
-                    setTickets({
-                        title: sessionInfo.movie.title,
-                        date: sessionInfo.session.date,
-                        hour: sessionInfo.session.hour,
-                        seats: ids,
-                        buyer: { name, cpf: cpf.replace(".", "").replace(".", "").replace("-", "") }
-                    })
-                    history.push("/success");
-                })
+        return true
+    }
+
+    const reservateSeat = async (body) =>{
+        const result = await bookSeats(body);
+        
+        if(result.success){
+            return {
+                title: sessionInfo.movie.title,
+                date: sessionInfo.session.date,
+                hour: sessionInfo.session.hour,
+                seats: ids,
+                buyer: { name, cpf: cpf.replace(".", "").replace(".", "").replace("-", "") }
+            }
+        }
+
+        return null;
+    }
+
+    const passBuyersAndIdsInfo = async (ids) => { 
+        const validate = verifyInfo();
+
+        if(!validate) {
+            return;
+        }
+
+        const body = {
+            buyers: ids.map( e => ({ name, cpf: cpf.replace(".", "").replace(".", "").replace("-", ""), id: e.id})),
+        }
+
+        const ticketsObject = await reservateSeat(body);
+
+       if(ticketsObject) {
+            setTickets(ticketsObject)
+            history.push("/success")
         }
     }
 

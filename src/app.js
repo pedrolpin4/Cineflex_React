@@ -1,9 +1,9 @@
-import './App.css';
-import NavBar from '../NavBar/NavBar'
-import MoviesList from '../MoviesList/MoviesList'
-import TicketsSession from '../TicketsSession/TicketsSession'
-import SessionsSeats from '../SessionsSeats/SessionsSeats';
-import ConfirmationScreen from '../ConfirmationScreen/ConfirmationScreen'
+import './styles/app.css';
+import NavBar from './components/NavBar'
+import MoviesList from './pages/MoviesList'
+import TicketsSession from './pages/TicketsSession'
+import SessionsSeats from './pages/SessionsSeats';
+import ConfirmationScreen from './pages/ConfirmationScreen'
 import {
   BrowserRouter as Router,
   Switch,

@@ -1,11 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import './ConfirmationScreen.css'
-import { Link, useHistory } from 'react-router-dom'
+import '../styles/ConfirmationScreen.css';
+import { Link, useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
 
 const ConfirmationScreen = ({ tickets }) => {
     const history = useHistory();
-    console.log(tickets);
 
    useEffect(() => { 
         if(!tickets.seats.length){

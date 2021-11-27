@@ -1,5 +1,5 @@
 import { CgSpinner } from 'react-icons/cg';
-import './loading.css'
+import '../styles/Loading.css'
 
 export default function Loading() {
     return (
