@@ -12,7 +12,10 @@ import {
 import  {useState } from 'react';
 
 function App() {
-  const [tickets, setTickets] = useState({})
+  const [tickets, setTickets] = useState({
+    buyer: {},
+    seats: [],
+  })
 
   return (
     <Router>
