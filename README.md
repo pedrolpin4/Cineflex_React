@@ -4,6 +4,10 @@
 
 Aiming to encourage a healthier lifestyle, this app is a startup that delivers a box with healthy and #gratitude products. Customers will be able to choose between two recurring subscription plans, weekly or monthly. Each box contains assorted products such as teas, organic products and incenses. Customers cannot choose the products and do not know what will be shipped in each box. 😇
 
+
+https://user-images.githubusercontent.com/87671165/143667753-7841f1ba-da00-450d-8d31-5f9703d712eb.mov
+
+
 ## FAQ
 
 - What are your signature options?
