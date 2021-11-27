@@ -1,6 +1,6 @@
 # Cineflex
 <p align="center" >
- ![cineflex](https://user-images.githubusercontent.com/87671165/143668159-19e30204-3365-4b25-8eee-2baadbd3123e.gif)
+ <img src = "https://user-images.githubusercontent.com/87671165/143668159-19e30204-3365-4b25-8eee-2baadbd3123e.gif" />
 </p>
 
 ## About
