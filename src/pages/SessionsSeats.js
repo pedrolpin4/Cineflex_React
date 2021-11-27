@@ -1,75 +1,96 @@
-import axios from 'axios';
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useRef, useState } from 'react'
-import Seat from './Seat/Seat';
-import { useHistory } from 'react-router-dom';
-import './SessionsSeats.css'
+import Seat from '../components/Seat';
+import { useHistory, useParams } from 'react-router-dom';
+import '../styles/SessionsSeats.css';
+import weekDayFactory from '../factories/weekdayFactory';
+import { cpfMask } from '../utils/masks';
+import { bookSeats, getSeats } from '../services/seatsService';
 
-const SessionsSeats = ({ tickets, setTickets, buyers, setBuyers}) =>{
+const SessionsSeats = ({setTickets}) =>{
+    const {
+        sessionId
+    } = useParams();
+
     const history = useHistory();
     const pageRef = useRef();
     const [seats, setSeats] = useState([]);
+    const [sessionInfo, setSessionInfo] = useState({movie: {}, session: {}});
     const [ids, setIds] = useState([]);
     const [name, setName] = useState("");
     const [cpf, setCpf] = useState("");
-    const [errorMessageName, setErrorMessageName] = useState("")
-    const [errorMessageCpf, setErrorMessageCpf] = useState("")
+    const [errorMessageName, setErrorMessageName] = useState("");
+    const [errorMessageCpf, setErrorMessageCpf] = useState("");
 
-    const cpfMask = (cpf) => {
-        return cpf
-            .replace(/\D/g, '')
-            .replace(/(\d{3})(\d)/, '$1.$2')
-            .replace(/(\d{3})(\d)/, '$1.$2')
-            .replace(/(\d{3})(\d{1,2})/, '$1-$2')
-            .replace(/(-\d{2})\d+?$/, '$1');
+    const weekday = weekDayFactory(sessionInfo.session.weekday);
+
+    const listSeats = async () => {
+        const response = await getSeats(sessionId);
+
+        if(response.success) {
+            setSeats(response.data.seats);
+            setSessionInfo(response.data)
+        }
     }
 
-    useEffect(() =>{
-        axios(`https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/showtimes/${tickets.session.id}/seats`)
-            .then((res) => {
-                setSeats([...res.data.seats]);
-            })
-            .catch(err => console.log(err))
-    }, [tickets.session.id]) 
-    
     useEffect(() => {
         pageRef.current.scrollIntoView({behavior: 'smooth'})
-    }, [])
-    
-    
+        listSeats()
+    }, []);
 
-    const passBuyersAndIdsInfo = (ids, buyers) => { 
-        console.log(cpf.length, cpf);
+    const verifyInfo = () => {
+
         if(name.length < 3){
             setErrorMessageName("Your name must be at least 3 characters length")
         } else{
             setErrorMessageName("")
         }
 
-        if(cpf.length < 14){
-            setErrorMessageCpf("Your cpf must be a valid one!!")
+        if(cpf.length !== 14){
+            setErrorMessageCpf("Your cpf must be a valid one!!");
         } else{
-            setErrorMessageCpf("")
+            setErrorMessageCpf("");
         }
 
+        if(name.length < 3 || cpf.length !== 14){
+            return null
+        }
 
-        if(name.length >= 3 && cpf.length === 14){
-            setBuyers({
-                name, 
-                cpf: cpf.replace(".", "").replace(".", "").replace("-", ""),
-                ids: ids.map(seat => seat.id)
-            })
-            
-            axios.post(
-                "https://mock-api.bootcamp.respondeai.com.br/api/v3/cineflex/seats/book-many",
-                {
-                    name, 
-                    cpf: cpf.replace(".", "").replace(".", "").replace("-", ""),
-                    ids: ids.map(seat => seat.id)
-                })
-                .then(() => {
-                    history.push("/success")
-                })    
-            setTickets({...tickets, seats: [...ids]});       
+        return true
+    }
+
+    const reservateSeat = async (body) =>{
+        const result = await bookSeats(body);
+        
+        if(result.success){
+            return {
+                title: sessionInfo.movie.title,
+                date: sessionInfo.session.date,
+                hour: sessionInfo.session.hour,
+                seats: ids,
+                buyer: { name, cpf: cpf.replace(".", "").replace(".", "").replace("-", "") }
+            }
+        }
+
+        return null;
+    }
+
+    const passBuyersAndIdsInfo = async (ids) => { 
+        const validate = verifyInfo();
+
+        if(!validate) {
+            return;
+        }
+
+        const body = {
+            buyers: ids.map( e => ({ name, cpf: cpf.replace(".", "").replace(".", "").replace("-", ""), id: e.id})),
+        }
+
+        const ticketsObject = await reservateSeat(body);
+
+       if(ticketsObject) {
+            setTickets(ticketsObject)
+            history.push("/success")
         }
     }
 
@@ -119,19 +140,19 @@ const SessionsSeats = ({ tickets, setTickets, buyers, setBuyers}) =>{
                         <p className = "error">{errorMessageCpf}</p>
 
                     </div>
-                    <div className = "reserve-seats"  onClick = {() => passBuyersAndIdsInfo(ids, buyers)}>
+                    <div className = "reserve-seats"  onClick = {() => passBuyersAndIdsInfo(ids)}>
                         Book now!
                     </div>
             </div>
-            <footer>
+            {<footer>
                 <div className = "mini-poster">
-                    <img src = {tickets.posterURL} alt = ""/>
+                    <img src = {sessionInfo.movie.image} alt = ""/>
                 </div>
                 <div className = "sessions-info">
-                    <p>{tickets.title}</p>
-                    <p>{tickets.session.weekday} - {tickets.session.hour}</p>
+                    <p>{sessionInfo.movie.title}</p>
+                    <p>{weekday} - {sessionInfo.session.hour}</p>
                 </div>
-            </footer>
+            </footer>}
         </>    
     )
 }

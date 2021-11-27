@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import "./Seat.css";
+import "../styles/Seat.css";
 
 const Seat = ({seat, ids, setIds}) => {
     const [seatsStatus, setSeatsStatus] = useState("available");
 
     const verifyStatus = () => {
-        setSeatsStatus(seat.isAvailable ? "available" : "unavailable")
+        setSeatsStatus(seat.isSelected ? "unavailable" : "available")
     }
 
     const reserveSeat = () => {
@@ -18,7 +18,7 @@ const Seat = ({seat, ids, setIds}) => {
         }
     }
 
-    useEffect(verifyStatus, [seat.isAvailable]);
+    useEffect(verifyStatus, [seat.isSelected]);
 
     return( <li 
         className = {`seat ${seatsStatus}`} 

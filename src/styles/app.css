@@ -56,3 +56,21 @@ input::placeholder {
     font-style: italic;
     font-size: 19px;
 }
+
+body {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #000;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+a{
+	text-decoration: none;
+	color: inherit;
+}
+
