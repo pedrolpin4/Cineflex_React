@@ -39,23 +39,16 @@ const SessionsSeats = ({setTickets}) =>{
     }, []);
 
     const verifyInfo = () => {
-
         if(name.length < 3){
             setErrorMessageName("Your name must be at least 3 characters length")
-        } else{
-            setErrorMessageName("")
-        }
+        } else setErrorMessageName("")
 
         if(cpf.length !== 14){
             setErrorMessageCpf("Your cpf must be a valid one!!");
-        } else{
-            setErrorMessageCpf("");
-        }
+        } else setErrorMessageCpf("");
 
-        if(name.length < 3 || cpf.length !== 14){
-            return null
-        }
-
+        if(name.length < 3 || cpf.length !== 14) return null
+         
         return true
     }
 
