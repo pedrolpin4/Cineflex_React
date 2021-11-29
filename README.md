@@ -1,6 +1,6 @@
 # Cineflex
 <p align="center" >
- <img src = "https://user-images.githubusercontent.com/87671165/143668159-19e30204-3365-4b25-8eee-2baadbd3123e.gif" height = "500px"/>
+ <img src = "https://user-images.githubusercontent.com/87671165/143816938-c41ec681-c979-4ef4-9031-ba6e5d4fc701.gif" height = "500px"/>
 </p>
 
 ## About
