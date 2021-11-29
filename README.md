@@ -31,7 +31,7 @@ Think about an ordinary movie theater, ok, now forget it! Cineflex is not an app
 
 ## What comes next?
 
-- On the next versions you'll be able to see a page with all the info you can imagine about the movies on Cineflex;
+- On the next versions you'll be able to use a fake credit card, or a real one lol, to book your tickets;
 - As a user, you'll be able to see your booking history and navigate on the site through a sidebar;
 
 ## Tecnologies I Used
