@@ -9,6 +9,8 @@ Think about an ordinary movie theater, ok, now forget it! Cineflex is not an app
 
 ## Resourses
 
+
+
 ## How to run?
 
  1. Clone this repository
