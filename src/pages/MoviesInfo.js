@@ -1,36 +1,43 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
-import {IoStarSharp} from "react-icons/io5" 
-// import { getPlot } from '../services/imdb';
+import { useHistory, useParams } from 'react-router';
+import {IoStarOutline, IoStarSharp} from "react-icons/io5" 
+import { getPlot } from '../services/imdb';
 import { getInfo } from '../services/moviesService';
 import '../styles/MoviesInfo.css'
+import hourFactory from '../factories/hourFactory';
+import Loading from '../components/Loading';
+import styled from 'styled-components';
 const MoviesInfo = () => {
     const {
         movieId
     } = useParams();
-    const [movie, setMovie] = useState({})
+    const history = useHistory();
+    const [movie, setMovie] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
 
     const listInfo = async () => {
-        // let plot = {
-        //     plotOutline: {
-        //         text: "",
-        //     },
-        //     genres: [],
-        //     certificate: {
-        //         US: [{}]
-        //     }
-        // };
+        let plot = {
+            plotOutline: {
+                text: "",
+            },
+            genres: [],
+            certificate: {
+                US: [{}]
+            }
+        };
         const response = await getInfo(movieId);
 
         if(response.success) {
-            //plot = await getPlot(response.data.imdbId);
+            plot = await getPlot(response.data.imdbId);
+            console.log(plot.data.genres);
             setMovie({
-                 ...response.data
-                // plotOutline: plot.data.plotOutline.text,
-                // genres: plot.data.genres,
-                // certificate: plot.data.certificates["US"][0].certificate,
+                 ...response.data,
+                plotOutline: plot.data.plotOutline.text,
+                genres: plot.data.genres,
+                certificate: plot.data.certificates["US"][0].certificate,
             })
+            setIsLoading(false)
         }
     }
 
@@ -39,37 +46,72 @@ const MoviesInfo = () => {
     return(
         <>
             {
-                movie ? 
+                isLoading ? 
+                <Loading /> :  
+                <>
                     <div className = "movie-container">
-                        <img src = {movie.image} alt = {`${movie.title} web poster`} className = "movie-container__poster"/>
+                        <a href = {`https://imdb.com/title/${movie.imdbId}`} target = "_blank" rel="noreferrer">
+                            <img src = {movie.image} alt = {`${movie.title} web poster`} className = "movie-container__poster" />
+                        </a>
                         <div className = "movie-info">
-                            <h2 className = "movie-info__title">{movie.title} ({movie.year})</h2>
+                            <a href = {`https://imdb.com/title/${movie.imdbId}`} target = "_blank" 
+                                rel="noreferrer" className = "movie-info__title">
+                                {movie.title} ({movie.year})
+                            </a>
+                            <p className = "movie-info__genres">{hourFactory(movie.runningTime)} - {movie.certificate} - 
+                                {movie.genres.map((genre, i) => {
+                                    if(i === movie.genres.length - 1) {
+                                        return `${genre}`
+                                    }
+
+                                    return `${genre}, `
+                                })}</p>
                             <div className = "movie-info__rating">
-                                <IoStarSharp size = {20} color = {"#e9d418"}/>
+                                <div className = "movie-info__ratings--stars">
+                                    <IoStarOutline size = {20} color = {"#e9d418"}/>
+                                    <IoStarOutline size = {20} color = {"#e9d418"}/>
+                                    <IoStarOutline size = {20} color = {"#e9d418"}/>
+                                    <IoStarOutline size = {20} color = {"#e9d418"}/>
+                                    <IoStarOutline size = {20} color = {"#e9d418"}/>
+                                    <StarsInner rating = {Number(movie.rating).toFixed(1)}>
+                                        <IoStarSharp size = {20} color = {"#e9d418"}/>
+                                        <IoStarSharp size = {20} color = {"#e9d418"}/>
+                                        <IoStarSharp size = {20} color = {"#e9d418"}/>
+                                        <IoStarSharp size = {20} color = {"#e9d418"}/>
+                                        <IoStarSharp size = {20} color = {"#e9d418"}/>
+                                    </StarsInner>
+                                </div>
                                 <p>
-                                    {movie.rating}/10 stars
+                                    {Number(movie.rating).toFixed(1)}/10
                                 </p>
                             </div>
-                            <br />
-                            <p className = "movie-info__running-time">Running time: {movie.runningTime} minutes</p>
-                            <br />
+                            <div className = "movie-info__basics">
+                                <p className = "movie-info__running-time"></p>                            
+                            </div>
                             <p className = "movie-info__plot">
-                                Plot: 
-                                When the menace known as the Joker wreaks 
-                                havoc and chaos on the people of Gotham, Batman must accept one of the greatest 
-                                psychological and physical tests of his ability to fight injustice.
+                                {movie.plotOutline}
                             </p>
-                            <br />
-                            <p className = "movie-info__genres">Genres: {["Action, ", "Crime, ", "Drama, ", "Thriller, "]}</p>
-                            <br />
-                            <p className = "movie-info__certificate">Certificate: PG-13</p>
                         </div>
                     </div> 
-                :
-                ""
+                    <div className = "button-holder">   
+                        <div className = "reserve-seats mb-small"  onClick = {() => history.push(`/sessions/${movieId}`)}>
+                            Reserve Your seats!
+                        </div> 
+                    </div>
+                </>
             }
         </>
     )
 }
+
+const StarsInner = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: ${props => (props.rating) * 10 + 1}%;
+    white-space: nowrap;
+    overflow: hidden;
+    z-index: 2;
+`
 
 export default MoviesInfo
