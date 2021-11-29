@@ -10,21 +10,21 @@ Think about an ordinary movie theater, ok, now forget it! Cineflex is not an app
 ## Resourses
 
 ## How to run?
-- Frontend
-  1. Clone this repository
-  2. Install dependencies
-  ```bash
-  npm i
-  ```
-  3. Run the front-end with
-  ```bash
-  npm start
-  ```
-  4. You can optionally build the project running
-  ```bash
-  npm run build
-  ```
-  5. Finally access http://localhost:3000 on your favorite browser
+
+ 1. Clone this repository
+ 2. Install dependencies
+ ```bash
+ npm i
+ ```
+ 3. Run the front-end with
+ ```bash
+ npm start
+ ```
+ 4. You can optionally build the project running
+ ```bash
+ npm run build
+ ```
+ 5. Finally access http://localhost:3000 on your favorite browser
     
 - Backend
     - clone my repository Cineflex_BackEnd;
