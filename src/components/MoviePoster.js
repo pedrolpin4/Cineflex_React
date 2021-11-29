@@ -4,7 +4,7 @@ import '../styles/MoviePoster.css'
 const MoviePoster = ({ movie }) => {
    
     return (
-        <Link to = {`/sessions/${movie.id}`}>
+        <Link to = {`/info/${movie.id}`}>
             <div className = 'movie-poster'>
                 <img src = {movie.image} alt = ""/>
             </div>

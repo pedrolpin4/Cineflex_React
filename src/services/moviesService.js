@@ -48,7 +48,38 @@ const getSessions = async (movieId) => {
     return serverError;
 }
 
+const getInfo = async (movieId) => {
+    let status;
+    let serverError;
+
+    const result = await API.get(`/movies/${movieId}`)
+        .catch(err => {
+            if(err.response){
+                status = err.response.status;
+            }
+
+            serverError = {
+                success: false,
+                message: "It looks like our server is not okay, we'll fix it ASAP!!"
+            }     
+        });
+
+    if(status === 404) return {
+        success: false,
+        message: `Looks like the movie you're trying to see is not available`,
+    }
+
+    if(result.data) return {
+        success: true,
+        data: result.data,
+    }
+
+    return serverError;
+
+}
+
 export {
     getMovies,
-    getSessions
+    getSessions,
+    getInfo,
 }
